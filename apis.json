@@ -1,0 +1,76 @@
+{
+    "name": "Tradier",
+    "description": "Tradier is a financial services cloud provider that offers a groundbreaking solution to serve platform providers, developers and investors. The Tradier solution features an innovative set of fully hosted APIs, modules and 'out of the box' tools that ar...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11434-tradier.jpg",
+    "tags": [
+        "financial",
+        "financial services",
+        "fintech",
+        "have api",
+        "stocks",
+        "target"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/tradier\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Tradier",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11434-tradier.jpg",
+            "humanURL": "https:\/\/developer.tradier.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/tradier-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "https:\/\/api.tradier.com\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/stdout.tradier.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/stdout.tradier.com\/feed.xml"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/tradier"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developer.tradier.com\/"
+        },
+        {
+            "type": "Email",
+            "url": "hello@tradier.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/tradier"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/tradier"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/tradier.com\/"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/developer.tradier.com"
+        }
+    ]
+}
