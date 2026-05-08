@@ -5,37 +5,90 @@ provider: Tradier
 providerId: tradier
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Fintech
-- Trading
-- Stocks
-- Options
-- Brokerage
-- Plans
-description: Placeholder plans/pricing artifact for Tradier. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
+  - Fintech
+  - Trading
+  - Stocks
+  - Options
+  - Brokerage
+  - Plans
+description: >-
+  Tradier offers a free Brokerage Sandbox for development against simulated brokerage accounts,
+  and live trading where customers fund a real Tradier brokerage account. Tradier's commission
+  schedule charges $0.35 per option contract on its TradierPRO plan or $10/month + $0.35 per
+  contract on the Tradier Stocks + Options plan. Real-time market data is bundled with funded
+  brokerage accounts; a market-data subscription tier is available without a brokerage account.
 sources:
-- https://tradier.com/
+  - https://tradier.com/individuals/pricing
+  - https://docs.tradier.com/
 plans:
-- id: tradier-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: see https://tradier.com/
-    userMultiplied: false
-  elements:
-  - name: Pending Reconciliation
+  - id: tradier-sandbox
+    name: Brokerage Sandbox
+    type: freemium
+    description: Free developer sandbox at api.sandbox.tradier.com for testing all REST endpoints.
+    entries:
+      - label: Sandbox access
+        name: sandbox_access
+        type: flat
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Simulated brokerage account
+      - name: Delayed market data
+      - name: All Brokerage API endpoints
+  - id: tradier-stocks-options
+    name: Stocks and Options
+    type: subscription
+    description: Live brokerage account with $10/month subscription and $0.35 per option contract.
+    entries:
+      - label: Monthly subscription
+        name: stocks_options_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: us
+        unit: 1
+        price: '10.00'
+        userMultiplied: false
+      - label: Option contract fee
+        name: option_contract_fee
+        type: usage
+        metric: contract
+        limit: -1
+        timeFrame: usage
+        geo: us
+        unit: 1
+        price: '0.35'
+        userMultiplied: false
+    elements:
+      - name: Commission-free equity trading
+      - name: Real-time NYSE/Nasdaq data
+      - name: Brokerage and Streaming API
+  - id: tradier-pro
+    name: TradierPRO
+    type: subscription
+    description: Active trader plan; $0.35 per option contract, no monthly fee, requires PRO data subscription.
+    entries:
+      - label: Option contract fee
+        name: pro_option_fee
+        type: usage
+        metric: contract
+        limit: -1
+        timeFrame: usage
+        geo: us
+        unit: 1
+        price: '0.35'
+        userMultiplied: false
+    elements:
+      - name: Active-trader analytics
+      - name: PRO real-time market data
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

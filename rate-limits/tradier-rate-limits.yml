@@ -5,31 +5,52 @@ provider: Tradier
 providerId: tradier
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Fintech
-- Trading
-- Stocks
-- Options
-- Brokerage
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Tradier. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+  - Fintech
+  - Trading
+  - Stocks
+  - Options
+  - Rate Limiting
+description: >-
+  Tradier publishes per-endpoint-class rate limits in its REST documentation. Trading endpoints
+  are limited to roughly 60 requests per minute per account, market-data endpoints to 120 requests
+  per minute, and login/auth endpoints to a much lower allowance. Rate-limit headers
+  (X-Ratelimit-Available, X-Ratelimit-Used, X-Ratelimit-Expiry, X-Ratelimit-Allowed) are returned
+  on every response.
 sources:
-- https://tradier.com/
+  - https://docs.tradier.com/
+  - https://documentation.tradier.com/brokerage-api/overview/rate-limiting
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Trading endpoints
+    scope: account
+    metric: requests_per_minute
+    limit: 60
+    notes: Order placement, modify, cancel.
+  - name: Market data endpoints
+    scope: account
+    metric: requests_per_minute
+    limit: 120
+    notes: Quotes, option chains, time and sales.
+  - name: Authentication endpoints
+    scope: account
+    metric: requests_per_minute
+    limit: 60
+    notes: Tokens and sessions.
+  - name: Streaming session creation
+    scope: account
+    metric: requests_per_minute
+    limit: 60
+    notes: Used to obtain stream session id; one stream per account is recommended.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Header-based feedback
+    description: >-
+      Inspect X-Ratelimit-Available and X-Ratelimit-Expiry on every response;
+      back off when Available is low.
+  - name: Backoff Strategy
+    description: Exponential backoff with jitter on 429; honor any Retry-After header.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

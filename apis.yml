@@ -2,8 +2,6 @@ aid: tradier
 url: https://raw.githubusercontent.com/api-evangelist/tradier/refs/heads/main/apis.yml
 name: Tradier
 x-type: company
-description: >-
-  Tradier provides brokerage trading, market data, and account management APIs across stocks, options, ETFs, and mutual funds.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Fintech
@@ -11,13 +9,86 @@ tags:
   - Stocks
   - Options
   - Brokerage
+  - Streaming
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+description: >-
+  Tradier is a brokerage platform offering REST and WebSocket APIs for trading
+  US equities, options, and futures, plus market data and account-opening services.
+  The Tradier Brokerage API exposes account, trading, market data, fundamentals,
+  watchlist, and streaming endpoints under a single base URL.
+apis:
+  - aid: tradier:brokerage-api
+    name: Tradier Brokerage API
+    tags:
+      - Trading
+      - Stocks
+      - Options
+      - Account
+      - Orders
+      - Market Data
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.tradier.com/v1
+    humanURL: https://docs.tradier.com/
+    description: >-
+      The Tradier Brokerage API provides REST endpoints for placing equity,
+      option, and multileg orders, retrieving account balances, positions,
+      orders, and history, and accessing market data including quotes, option
+      chains, time and sales, fundamentals, and corporate calendars. A sandbox
+      base URL is available at api.sandbox.tradier.com/v1.
+    properties:
+      - type: Documentation
+        url: https://docs.tradier.com/
+      - type: Sandbox
+        url: https://api.sandbox.tradier.com/v1
+    x-features:
+      - Equity, option, and multileg order placement
+      - Account balances, positions, history
+      - Quotes, option chains, time and sales
+      - Corporate calendars and fundamentals
+      - Watchlists
+      - Sandbox environment
+    x-use-cases:
+      - Build automated equity and options trading systems
+      - Power retail trading and watchlist apps
+      - Backtest using sandbox accounts
+  - aid: tradier:streaming-api
+    name: Tradier Streaming API
+    tags:
+      - Streaming
+      - WebSocket
+      - HTTP
+      - Real-time
+      - Market Data
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://stream.tradier.com/v1
+    humanURL: https://docs.tradier.com/brokerage-api/streaming
+    description: >-
+      The Tradier Streaming API delivers real-time market and account events
+      over HTTP and WebSocket. Quote, trade, summary, timesale, and order
+      events are streamed; client first creates a session via the brokerage
+      REST endpoints and connects to stream.tradier.com.
+    properties:
+      - type: Documentation
+        url: https://docs.tradier.com/brokerage-api/streaming
+    x-features:
+      - HTTP and WebSocket streaming
+      - Quote, trade, summary, timesale events
+      - Account-level order events
+    x-use-cases:
+      - Stream live ticks into trading bots
+      - Power real-time UI updates
+      - Monitor order state changes in real time
 common:
-  - type: Website
+  - type: Portal
     url: https://tradier.com/
+  - type: Documentation
+    url: https://docs.tradier.com/
+  - type: Pricing
+    url: https://tradier.com/individuals/pricing
+  - type: Status
+    url: https://status.tradier.com/
   - type: Plans
     url: plans/tradier-plans-pricing.yml
   - type: RateLimits
