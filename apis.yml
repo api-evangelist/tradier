@@ -1,0 +1,29 @@
+aid: tradier
+url: https://raw.githubusercontent.com/api-evangelist/tradier/refs/heads/main/apis.yml
+name: Tradier
+x-type: company
+description: >-
+  Tradier provides brokerage trading, market data, and account management APIs across stocks, options, ETFs, and mutual funds.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Fintech
+  - Trading
+  - Stocks
+  - Options
+  - Brokerage
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://tradier.com/
+  - type: Plans
+    url: plans/tradier-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/tradier-rate-limits.yml
+  - type: FinOps
+    url: finops/tradier-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
