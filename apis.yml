@@ -1,7 +1,7 @@
 aid: tradier
 url: https://raw.githubusercontent.com/api-evangelist/tradier/refs/heads/main/apis.yml
 name: Tradier
-x-type: company
+kind: company
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Fintech
@@ -87,7 +87,7 @@ common:
     url: https://docs.tradier.com/
   - type: Pricing
     url: https://tradier.com/individuals/pricing
-  - type: Status
+  - type: StatusPage
     url: https://status.tradier.com/
   - type: Plans
     url: plans/tradier-plans-pricing.yml
