@@ -81,6 +81,10 @@ apis:
       - Power real-time UI updates
       - Monitor order state changes in real time
 common:
+  - type: GitHubOrganization
+    url: https://github.com/tradier
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/tradier
   - type: Portal
     url: https://tradier.com/
   - type: Documentation
