@@ -1,0 +1,392 @@
+openapi: 3.1.0
+info:
+  title: Tradier Brokerage API
+  version: "1.0"
+  description: |
+    REST API for the Tradier brokerage platform covering trading,
+    account management, market data, watchlists, and streaming session
+    creation for US equities and options.
+
+    Source: https://docs.tradier.com/ (endpoints aggregated from the
+    public llms.txt index and reference documentation).
+  contact:
+    name: Tradier
+    url: https://docs.tradier.com/
+servers:
+  - url: https://api.tradier.com/v1
+    description: Production brokerage API
+  - url: https://sandbox.tradier.com/v1
+    description: Sandbox (delayed data) environment
+security:
+  - bearerAuth: []
+tags:
+  - name: User
+  - name: Accounts
+  - name: Trading
+  - name: Market Data
+  - name: Options
+  - name: Watchlists
+  - name: Streaming
+paths:
+  /user/profile:
+    get:
+      tags: [User]
+      summary: Get user profile
+      operationId: getUserProfile
+      responses:
+        "200":
+          description: User profile information.
+  /accounts/{account_id}/balances:
+    get:
+      tags: [Accounts]
+      summary: Get account balances
+      operationId: getAccountBalances
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: Account balance and margin information.
+  /accounts/{account_id}/positions:
+    get:
+      tags: [Accounts]
+      summary: Get account positions
+      operationId: getAccountPositions
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: Current open positions.
+  /accounts/{account_id}/history:
+    get:
+      tags: [Accounts]
+      summary: Get account history
+      operationId: getAccountHistory
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: Historical account activity.
+  /accounts/{account_id}/gainloss:
+    get:
+      tags: [Accounts]
+      summary: Get cost basis / gain and loss
+      operationId: getAccountGainLoss
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: Cost basis and gain/loss data for closed positions.
+  /accounts/{account_id}/orders:
+    get:
+      tags: [Trading]
+      summary: List orders
+      operationId: listOrders
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: List of current orders.
+    post:
+      tags: [Trading]
+      summary: Place order
+      operationId: placeOrder
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                class: { type: string, description: "equity, option, multileg, combo" }
+                symbol: { type: string }
+                side: { type: string, description: "buy, sell, buy_to_cover, sell_short" }
+                quantity: { type: integer }
+                type: { type: string, description: "market, limit, stop, stop_limit" }
+                duration: { type: string, description: "day, gtc, pre, post" }
+                price: { type: number }
+                stop: { type: number }
+              required: [class, symbol, side, quantity, type, duration]
+      responses:
+        "200":
+          description: Order acknowledgement.
+  /accounts/{account_id}/orders/{order_id}:
+    get:
+      tags: [Trading]
+      summary: Get a specific order
+      operationId: getOrder
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/OrderId"
+      responses:
+        "200":
+          description: Order details.
+    put:
+      tags: [Trading]
+      summary: Modify an order
+      operationId: modifyOrder
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/OrderId"
+      responses:
+        "200":
+          description: Modified order.
+    delete:
+      tags: [Trading]
+      summary: Cancel an order
+      operationId: cancelOrder
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/OrderId"
+      responses:
+        "200":
+          description: Cancellation acknowledgement.
+  /markets/quotes:
+    get:
+      tags: [Market Data]
+      summary: Get quotes for symbols
+      operationId: getQuotes
+      parameters:
+        - in: query
+          name: symbols
+          required: true
+          schema: { type: string }
+          description: Comma-separated list of symbols.
+        - in: query
+          name: greeks
+          schema: { type: boolean }
+      responses:
+        "200":
+          description: Quote data.
+    post:
+      tags: [Market Data]
+      summary: Get quotes (large symbol list)
+      operationId: postQuotes
+      responses:
+        "200":
+          description: Quote data.
+  /markets/history:
+    get:
+      tags: [Market Data]
+      summary: Get historical pricing
+      operationId: getHistory
+      parameters:
+        - in: query
+          name: symbol
+          required: true
+          schema: { type: string }
+        - in: query
+          name: interval
+          schema: { type: string, enum: [daily, weekly, monthly] }
+        - in: query
+          name: start
+          schema: { type: string, format: date }
+        - in: query
+          name: end
+          schema: { type: string, format: date }
+      responses:
+        "200":
+          description: Historical pricing.
+  /markets/timesales:
+    get:
+      tags: [Market Data]
+      summary: Get time and sales
+      operationId: getTimeSales
+      parameters:
+        - in: query
+          name: symbol
+          required: true
+          schema: { type: string }
+        - in: query
+          name: interval
+          schema: { type: string, enum: [tick, "1min", "5min", "15min"] }
+        - in: query
+          name: start
+          schema: { type: string }
+        - in: query
+          name: end
+          schema: { type: string }
+      responses:
+        "200":
+          description: Time and sales data.
+  /markets/search:
+    get:
+      tags: [Market Data]
+      summary: Search securities
+      operationId: searchSecurities
+      parameters:
+        - in: query
+          name: q
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Matching securities.
+  /markets/lookup:
+    get:
+      tags: [Market Data]
+      summary: Lookup symbols
+      operationId: lookupSymbols
+      parameters:
+        - in: query
+          name: q
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Matching symbols.
+  /markets/clock:
+    get:
+      tags: [Market Data]
+      summary: Get market clock
+      operationId: getClock
+      responses:
+        "200":
+          description: Current market status.
+  /markets/calendar:
+    get:
+      tags: [Market Data]
+      summary: Get market calendar
+      operationId: getCalendar
+      responses:
+        "200":
+          description: Market calendar.
+  /markets/options/chains:
+    get:
+      tags: [Options]
+      summary: Get option chains
+      operationId: getOptionChains
+      parameters:
+        - in: query
+          name: symbol
+          required: true
+          schema: { type: string }
+        - in: query
+          name: expiration
+          required: true
+          schema: { type: string, format: date }
+        - in: query
+          name: greeks
+          schema: { type: boolean }
+      responses:
+        "200":
+          description: Option chain.
+  /markets/options/expirations:
+    get:
+      tags: [Options]
+      summary: Get option expirations
+      operationId: getOptionExpirations
+      parameters:
+        - in: query
+          name: symbol
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Available expirations.
+  /markets/options/strikes:
+    get:
+      tags: [Options]
+      summary: Get option strikes
+      operationId: getOptionStrikes
+      parameters:
+        - in: query
+          name: symbol
+          required: true
+          schema: { type: string }
+        - in: query
+          name: expiration
+          required: true
+          schema: { type: string, format: date }
+      responses:
+        "200":
+          description: Available strikes.
+  /watchlists:
+    get:
+      tags: [Watchlists]
+      summary: List watchlists
+      operationId: listWatchlists
+      responses:
+        "200":
+          description: All watchlists.
+    post:
+      tags: [Watchlists]
+      summary: Create watchlist
+      operationId: createWatchlist
+      responses:
+        "200":
+          description: Created watchlist.
+  /watchlists/{id}:
+    get:
+      tags: [Watchlists]
+      summary: Get a watchlist
+      operationId: getWatchlist
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Watchlist detail.
+    put:
+      tags: [Watchlists]
+      summary: Update a watchlist
+      operationId: updateWatchlist
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Updated watchlist.
+    delete:
+      tags: [Watchlists]
+      summary: Delete a watchlist
+      operationId: deleteWatchlist
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Deletion acknowledgement.
+  /markets/events/session:
+    post:
+      tags: [Streaming]
+      summary: Create market streaming session
+      operationId: createMarketStreamingSession
+      responses:
+        "200":
+          description: Session token.
+  /accounts/events/session:
+    post:
+      tags: [Streaming]
+      summary: Create account streaming session
+      operationId: createAccountStreamingSession
+      responses:
+        "200":
+          description: Session token.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.
+  parameters:
+    AccountId:
+      in: path
+      name: account_id
+      required: true
+      schema: { type: string }
+      description: Tradier account identifier.
+    OrderId:
+      in: path
+      name: order_id
+      required: true
+      schema: { type: string }
+      description: Order identifier.
