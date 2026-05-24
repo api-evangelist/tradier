@@ -99,6 +99,8 @@ common:
     url: rate-limits/tradier-rate-limits.yml
   - type: FinOps
     url: finops/tradier-finops.yml
+  - type: LLMsTxt
+    url: https://docs.tradier.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
