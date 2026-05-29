@@ -1,0 +1,422 @@
+asyncapi: '2.6.0'
+info:
+  title: Tradier Streaming WebSocket API
+  version: '1.0.0'
+  description: >-
+    AsyncAPI 2.6 description of Tradier's WebSocket streaming for market
+    events and account events. A streaming session must first be created
+    via the brokerage REST endpoints (POST /v1/markets/events/session for
+    market data and POST /v1/accounts/events/session for account data),
+    which return a short-lived sessionid used to authenticate the WebSocket
+    connection. Session identifiers are valid for up to 5 minutes prior to
+    connection. Only one streaming session may be open at a time per user.
+  contact:
+    name: Tradier API Support
+    url: https://docs.tradier.com/
+  license:
+    name: Tradier API Terms
+    url: https://tradier.com/disclosures
+defaultContentType: application/json
+servers:
+  production-market:
+    url: ws.tradier.com/v1/markets/events
+    protocol: wss
+    description: Production WebSocket endpoint for market events streaming.
+  production-account:
+    url: ws.tradier.com/v1/accounts/events
+    protocol: wss
+    description: Production WebSocket endpoint for account events streaming.
+channels:
+  /v1/markets/events:
+    description: >-
+      Market events streaming channel. After connecting the client sends
+      a JSON subscription payload referencing a sessionid acquired from
+      POST /v1/markets/events/session. The server then streams one or
+      more of the requested payload types (quote, trade, summary,
+      timesale, tradex). The subscription may be modified mid-stream by
+      sending a new payload with the same sessionid.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: subscribeMarketEvents
+      summary: Send a market data subscription request.
+      message:
+        $ref: '#/components/messages/MarketSubscription'
+    subscribe:
+      operationId: receiveMarketEvents
+      summary: Receive streamed market data payloads.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Quote'
+          - $ref: '#/components/messages/Trade'
+          - $ref: '#/components/messages/Summary'
+          - $ref: '#/components/messages/Timesale'
+          - $ref: '#/components/messages/Tradex'
+  /v1/accounts/events:
+    description: >-
+      Account events streaming channel. After connecting the client
+      sends a JSON subscription payload referencing a sessionid from
+      POST /v1/accounts/events/session and the desired event types
+      (currently "order"). The server streams order lifecycle events and
+      periodic heartbeats. Streams may only target either live or
+      sandbox accounts within a session.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: subscribeAccountEvents
+      summary: Send an account events subscription request.
+      message:
+        $ref: '#/components/messages/AccountSubscription'
+    subscribe:
+      operationId: receiveAccountEvents
+      summary: Receive streamed account events.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/OrderEvent'
+          - $ref: '#/components/messages/Heartbeat'
+components:
+  messages:
+    MarketSubscription:
+      name: MarketSubscription
+      title: Market Data Subscription Request
+      summary: Client request to begin or modify a market data stream.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/MarketSubscription'
+    Quote:
+      name: Quote
+      title: Quote Event
+      summary: Bid/ask quote update for a symbol.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Quote'
+    Trade:
+      name: Trade
+      title: Trade Event
+      summary: Executed trade event for a symbol.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Trade'
+    Summary:
+      name: Summary
+      title: Summary Event
+      summary: Session open, high, low, or previous close update.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Summary'
+    Timesale:
+      name: Timesale
+      title: Timesale Event
+      summary: Time and sales tick for a symbol.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Timesale'
+    Tradex:
+      name: Tradex
+      title: Tradex Event
+      summary: >-
+        Extended trade event recommended for pre and post market sessions
+        in place of the trade payload.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Tradex'
+    AccountSubscription:
+      name: AccountSubscription
+      title: Account Events Subscription Request
+      summary: Client request to begin streaming account events.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AccountSubscription'
+    OrderEvent:
+      name: OrderEvent
+      title: Order Event
+      summary: Order lifecycle event for a streamed account.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderEvent'
+    Heartbeat:
+      name: Heartbeat
+      title: Heartbeat Event
+      summary: Stream keep-alive heartbeat.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/Heartbeat'
+  schemas:
+    MarketSubscription:
+      type: object
+      required:
+        - symbols
+        - sessionid
+      properties:
+        symbols:
+          type: array
+          description: >-
+            Equity or OCC option symbols to subscribe to. Submit only the
+            symbols needed to avoid abuse detection.
+          items:
+            type: string
+          example:
+            - AAPL
+            - TSLA250815C00150000
+        sessionid:
+          type: string
+          description: Session identifier returned by POST /v1/markets/events/session.
+        filter:
+          type: array
+          description: >-
+            Payload types to receive. All types are returned when not
+            specified. Filter cannot be changed after the stream starts.
+          items:
+            type: string
+            enum:
+              - trade
+              - quote
+              - summary
+              - timesale
+              - tradex
+        linebreak:
+          type: boolean
+          description: When true each payload is separated by a line break.
+          default: false
+        validOnly:
+          type: boolean
+          description: Only return exchange-validated ticks.
+          default: true
+        advancedDetails:
+          type: boolean
+          description: Include advanced details on timesale payloads.
+          default: false
+    Quote:
+      type: object
+      description: Bid/ask quote update.
+      properties:
+        type:
+          type: string
+          enum: [quote]
+        symbol:
+          type: string
+        bid:
+          type: number
+          format: float
+        bidsz:
+          type: integer
+        bidexch:
+          type: string
+          description: Bid exchange code.
+        biddate:
+          type: string
+          description: Epoch milliseconds for the bid update.
+        ask:
+          type: number
+          format: float
+        asksz:
+          type: integer
+        askexch:
+          type: string
+          description: Ask exchange code.
+        askdate:
+          type: string
+          description: Epoch milliseconds for the ask update.
+    Trade:
+      type: object
+      description: Executed trade event.
+      properties:
+        type:
+          type: string
+          enum: [trade]
+        symbol:
+          type: string
+        exch:
+          type: string
+          description: Exchange code.
+        price:
+          type: string
+          description: Trade price.
+        size:
+          type: string
+          description: Trade size.
+        cvol:
+          type: string
+          description: Cumulative volume for the symbol.
+        date:
+          type: string
+          description: Epoch milliseconds for the trade.
+        last:
+          type: string
+          description: Last trade price.
+    Summary:
+      type: object
+      description: Session open, high, low, or previous close update.
+      properties:
+        type:
+          type: string
+          enum: [summary]
+        symbol:
+          type: string
+        open:
+          type: string
+        high:
+          type: string
+        low:
+          type: string
+        prevClose:
+          type: string
+    Timesale:
+      type: object
+      description: Time and sales tick.
+      properties:
+        type:
+          type: string
+          enum: [timesale]
+        symbol:
+          type: string
+        exch:
+          type: string
+        bid:
+          type: string
+        ask:
+          type: string
+        last:
+          type: string
+        size:
+          type: string
+        date:
+          type: string
+          description: Epoch milliseconds for the tick.
+        seq:
+          type: integer
+          description: Unique sequence number for the tick.
+        flag:
+          type: string
+          description: Event flag.
+        cancel:
+          type: boolean
+          description: Whether the tick is a cancel.
+        correction:
+          type: boolean
+          description: Whether the tick is a correction.
+        session:
+          type: string
+          description: Market session (pre, regular, post).
+    Tradex:
+      type: object
+      description: >-
+        Extended trade event recommended over trade during pre and post
+        market sessions for more accurate data.
+      properties:
+        type:
+          type: string
+          enum: [tradex]
+        symbol:
+          type: string
+        exch:
+          type: string
+        price:
+          type: string
+        size:
+          type: string
+        cvol:
+          type: string
+        date:
+          type: string
+        last:
+          type: string
+    AccountSubscription:
+      type: object
+      required:
+        - events
+        - sessionid
+      properties:
+        events:
+          type: array
+          description: Account event types to stream. Currently only order is supported.
+          items:
+            type: string
+            enum:
+              - order
+        sessionid:
+          type: string
+          description: Session identifier returned by POST /v1/accounts/events/session.
+        excludeAccounts:
+          type: array
+          description: Account numbers to exclude from the stream.
+          items:
+            type: string
+    OrderEvent:
+      type: object
+      description: Order lifecycle update for an account.
+      properties:
+        event:
+          type: string
+          enum: [order]
+        id:
+          type: integer
+          description: Unique identifier for the order.
+        parent_id:
+          type: integer
+          description: Unique identifier for the parent order, when applicable.
+        account:
+          type: string
+          description: Account number associated with the order.
+        status:
+          type: string
+          enum:
+            - open
+            - partially_filled
+            - filled
+            - expired
+            - canceled
+            - pending
+            - rejected
+            - calculated
+            - accepted_for_bidding
+            - error
+            - held
+        type:
+          type: string
+          description: >-
+            Order type. Single-leg values include market, limit, stop,
+            stop_limit; multi-leg values include market, debit, credit, even.
+        tag:
+          type: string
+          description: Optional order tag.
+        price:
+          type: number
+          format: float
+          description: Limit price.
+        stop_price:
+          type: number
+          format: float
+          description: Stop price.
+        avg_fill_price:
+          type: number
+          format: float
+        exec_quantity:
+          type: number
+          format: float
+          description: Total shares or contracts filled.
+        last_fill_quantity:
+          type: number
+          format: float
+        remaining_quantity:
+          type: number
+          format: float
+        create_date:
+          type: string
+          format: date-time
+        transaction_date:
+          type: string
+          format: date-time
+    Heartbeat:
+      type: object
+      description: Stream keep-alive heartbeat message.
+      properties:
+        event:
+          type: string
+          enum: [heartbeat]
+        status:
+          type: string
+        timestamp:
+          type: string

@@ -72,6 +72,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.tradier.com/brokerage-api/streaming
+      - type: AsyncAPI
+        url: asyncapi/tradier-asyncapi.yml
     x-features:
       - HTTP and WebSocket streaming
       - Quote, trade, summary, timesale events
