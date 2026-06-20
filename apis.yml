@@ -2,7 +2,7 @@ aid: tradier
 url: https://raw.githubusercontent.com/api-evangelist/tradier/refs/heads/main/apis.yml
 name: Tradier
 kind: company
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Fintech
   - Trading
@@ -28,7 +28,7 @@ apis:
       - Account
       - Orders
       - Market Data
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.tradier.com/v1
     humanURL: https://docs.tradier.com/
     description: >-
@@ -61,7 +61,7 @@ apis:
       - HTTP
       - Real-time
       - Market Data
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://stream.tradier.com/v1
     humanURL: https://docs.tradier.com/brokerage-api/streaming
     description: >-
