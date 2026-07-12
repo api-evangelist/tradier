@@ -83,6 +83,10 @@ apis:
       - Power real-time UI updates
       - Monitor order state changes in real time
 common:
+  - type: VulnerabilityDisclosure
+    url: security/tradier-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/tradier-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/tradier
   - type: LinkedIn
@@ -103,6 +107,8 @@ common:
     url: finops/tradier-finops.yml
   - type: LlmsText
     url: https://docs.tradier.com/llms.txt
+  - url: https://blog.tradier.com/blog/rss.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
