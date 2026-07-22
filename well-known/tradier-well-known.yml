@@ -1,0 +1,39 @@
+generated: '2026-07-22'
+method: searched
+source: live probes of tradier.com, api.tradier.com, mcp.tradier.com, docs.tradier.com
+hosts:
+  - host: https://tradier.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: tradier-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://mcp.tradier.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: tradier-mcp-oauth-authorization-server.json
+        note: RFC 8414 metadata for the MCP server's OAuth authorization server (issuer https://p-be-auth.tradier.com, scopes openid/mcp/claudeai, authorization_code + PKCE S256)
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: tradier-mcp-oauth-protected-resource.json
+        note: RFC 9728 protected-resource metadata (bearer header, TLS client certificate bound access tokens)
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://api.tradier.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        note: all /.well-known/* paths on api.tradier.com 302-redirect to https://documentation.tradier.com/ (no real documents served)
+  - host: https://docs.tradier.com
+    documents:
+      - path: /llms.txt
+        status: 200
+        file: ../llms/tradier-llms.txt

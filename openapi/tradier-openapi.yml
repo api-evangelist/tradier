@@ -376,7 +376,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: OAuth2 access token
-      description: Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.
+      description: "Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`."
   parameters:
     AccountId:
       in: path

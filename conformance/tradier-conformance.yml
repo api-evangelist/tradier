@@ -1,0 +1,60 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/tradier-openapi.yml + https://docs.tradier.com/docs (authentication, rate-limiting, response-format, error-responses)
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Authorization-code flow documented at https://docs.tradier.com/docs/authentication
+      (scopes read/write/market/trade/stream); API requests authenticate with
+      Authorization Bearer tokens.
+  - id: oidc
+    conforms: partial
+    evidence: >-
+      The brokerage API itself is OAuth2-only (no OIDC discovery on tradier.com or
+      api.tradier.com), but the MCP server's authorization server
+      (p-be-auth.tradier.com) supports the openid scope and RFC 8414 metadata at
+      mcp.tradier.com/.well-known/oauth-authorization-server.
+  - id: rfc8414-oauth-server-metadata
+    conforms: true
+    evidence: well-known/tradier-mcp-oauth-authorization-server.json (mcp.tradier.com)
+  - id: rfc9728-protected-resource-metadata
+    conforms: true
+    evidence: well-known/tradier-mcp-oauth-protected-resource.json (mcp.tradier.com)
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: https://tradier.com/.well-known/security.txt (well-known/tradier-security.txt)
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Official hosted MCP server at https://mcp.tradier.com/mcp (Streamable HTTP,
+      protocol 2025-03-26); see mcp/tradier-mcp.yml.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are plain-text/JSON messages with HTTP status codes plus an order-level
+      errors property, not application/problem+json (https://docs.tradier.com/docs/error-responses).
+  - id: rate-limit-headers
+    conforms: true
+    evidence: >-
+      X-Ratelimit-Allowed / X-Ratelimit-Used / X-Ratelimit-Available / X-Ratelimit-Expiry
+      response headers documented at https://docs.tradier.com/docs/rate-limiting.
+  - id: pagination
+    conforms: partial
+    evidence: >-
+      page/limit query parameters on account history and gain/loss endpoints; most
+      collection endpoints return full result sets.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented for order placement.
+  - id: json-api
+    conforms: false
+    evidence: XML-first response envelope with XML-to-JSON translation (https://docs.tradier.com/docs/response-format).
+  - id: fapi
+    conforms: false
+    evidence: No FAPI conformance claim published.
+  - id: websocket-streaming
+    conforms: true
+    evidence: >-
+      WSS streaming at ws.tradier.com for market and account events with short-lived
+      sessionids (asyncapi/tradier-asyncapi.yml).

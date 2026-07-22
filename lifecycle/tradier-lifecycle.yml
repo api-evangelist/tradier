@@ -1,0 +1,19 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/ + https://status.tradier.com/ + https://docs.tradier.com/docs/response-format
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: All brokerage, streaming, and sandbox endpoints are versioned under /v1.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy page or Sunset/Deprecation header support is
+    published. The response-format docs announce one concrete deprecation: "XML
+    format will be removed in future versions of all Tradier APIs" (JSON is the
+    recommended format).
+status_page: https://status.tradier.com/
+status_page_docs: https://docs.tradier.com/docs/tradier-status-page
+sla: null
+deprecated_operations: []

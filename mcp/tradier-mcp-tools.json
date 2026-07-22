@@ -1,0 +1,775 @@
+{
+ "fetched": "2026-07-22",
+ "source": "https://mcp.tradier.com/mcp (tools/list, anonymous session)",
+ "tool_count": 21,
+ "tools": [
+  {
+   "name": "get_user_profile",
+   "description": "Retrieves user profile information from Tradier account.\nReturns:\n    Map: User profile details including:\n        - User ID\n        - Account information\n        - Profile settings\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  },
+  {
+   "name": "place_equity_order",
+   "description": "Places an equity order (buy/sell stock).\nParameters:\n    account_number: Account to place order in\n    symbol: Stock symbol (e.g., \"AAPL\")\n    side: \"buy\" or \"sell\"\n    quantity: Number of shares\n    type: Order type (\"market\", \"limit\", \"stop\", \"stop_limit\")\n    duration: Order duration (\"day\", \"gtc\", \"pre\", \"post\")\n    price: Price for limit orders (optional)\n    stop: Stop price for stop orders (optional)\nReturns:\n    Map: Order confirmation with order ID and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "symbol": {
+      "type": "string"
+     },
+     "side": {
+      "type": "string"
+     },
+     "quantity": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "duration": {
+      "type": "string"
+     },
+     "price": {
+      "type": "string"
+     },
+     "stop": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "symbol",
+     "side",
+     "quantity",
+     "type",
+     "duration",
+     "price",
+     "stop"
+    ]
+   }
+  },
+  {
+   "name": "get_market_quotes",
+   "description": "Retrieves market quotes for specified symbols.\nParameters:\n    symbols: Comma-separated list of symbols (e.g., \"AAPL,GOOGL,MSFT\")\nReturns:\n    Map: Quote details including:\n        - Symbol\n        - Last price\n        - Change\n        - Percent change\n        - Volume\n        - Bid/Ask\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "symbols": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "symbols"
+    ]
+   }
+  },
+  {
+   "name": "get_watchlists",
+   "description": "Retrieves all watchlists for the user.\nReturns:\n    Map: List of watchlists with their symbols\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  },
+  {
+   "name": "get_account_balances",
+   "description": "Retrieves account balance information for a specific account.\nParameters:\n    account_number: The account number to get balances for\nReturns:\n    Map: Balance details including:\n        - Total equity\n        - Option buying power\n        - Stock buying power\n        - Cash available\n        - Day trading buying power\n        - Dividend balance\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber"
+    ]
+   }
+  },
+  {
+   "name": "get_gainloss",
+   "description": "Retrieves gain/loss report for an account.\nParameters:\n    account_number: Account to get report for\n    page (optional): Page number for pagination\n    limit (optional): Number of records per page\nReturns:\n    Map: Gain/loss report with realized and unrealized P&L\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "page": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "page",
+     "limit"
+    ]
+   }
+  },
+  {
+   "name": "get_orders",
+   "description": "Retrieves orders for a specific account.\nParameters:\n    account_number: The account number to get orders for\nReturns:\n    Map: Order details including:\n        - Order ID\n        - Symbol\n        - Side (buy/sell)\n        - Quantity\n        - Price\n        - Order type\n        - Status\n        - Date created\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber"
+    ]
+   }
+  },
+  {
+   "name": "cancel_order",
+   "description": "Cancels an existing order.\nParameters:\n    account_number: Account containing the order\n    order_id: ID of the order to cancel\nReturns:\n    Map: Cancellation confirmation\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "orderId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "orderId"
+    ]
+   }
+  },
+  {
+   "name": "get_account_history",
+   "description": "Retrieves historical activity for an account including trades, dividends, options, transfers, and other transactions.\nParameters:\n    account_number: The account number to get history for (required)\n    page: Page number for paginated results (optional, default: 1)\n    limit: Number of results to return per page (optional, default: 25, max: 100)\n    type: Activity type filter (optional) - trade, option, ach, wire, dividend, fee, tax, journal, check, transfer, adjustment, interest\n    start: Start date in yyyy-mm-dd format (optional, default: account opening date)\n    end: End date in yyyy-mm-dd format (optional, default: end of current day)\n    symbol: Filter by security symbol (optional)\n    exact_match: Use exact symbol match (optional, default: false)\nReturns:\n    Map: Account history including:\n        - event array with amount, date, type, and transaction details\n        - trade details (commission, description, price, quantity, symbol, trade_type)\n        - option details (option_type, description, quantity)\n        - journal details (description, quantity)\n        - dividend details (description, quantity, symbol)\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "page": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "start": {
+      "type": "string"
+     },
+     "end": {
+      "type": "string"
+     },
+     "symbol": {
+      "type": "string"
+     },
+     "exactMatch": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "page",
+     "limit",
+     "type",
+     "start",
+     "end",
+     "symbol",
+     "exactMatch"
+    ]
+   }
+  },
+  {
+   "name": "add_to_watchlist",
+   "description": "Adds symbols to a watchlist.\nParameters:\n    watchlist_id: ID of the watchlist\n    symbols: Comma-separated list of symbols to add\nReturns:\n    Map: Confirmation of symbols added\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "watchlistId": {
+      "type": "string"
+     },
+     "symbols": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "watchlistId",
+     "symbols"
+    ]
+   }
+  },
+  {
+   "name": "get_positions",
+   "description": "Retrieves current positions for a specific account.\nParameters:\n    account_number: The account number to get positions for\nReturns:\n    Map: Position details including:\n        - Symbol\n        - Quantity\n        - Cost basis\n        - Date acquired\n        - Current value\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber"
+    ]
+   }
+  },
+  {
+   "name": "get_market_calendar",
+   "description": "Retrieves market calendar information showing trading days and holidays.\nParameters:\n    month (optional): Month in MM format (e.g., \"12\" for December)\n    year (optional): Year in YYYY format (e.g., \"2024\")\nReturns:\n    Map: Market calendar information\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "month": {
+      "type": "string"
+     },
+     "year": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "month",
+     "year"
+    ]
+   }
+  },
+  {
+   "name": "get_account_historical_balances",
+   "description": "Retrieves historical account balance information for a specific account.\nParameters:\n    account_number: The account number to get balances for\n    period: The period for which to fetch balances\n            (WEEK, MONTH, YEAR, YEAR_5, YEAR_10, YTD, ALL)\nReturns:\n    Map: Historical balances including:\n        - date (String)\n        - value (Double)\n        - delta (Double)\n        - delta_percent (Double)\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "period": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "period"
+    ]
+   }
+  },
+  {
+   "name": "get_historical_data",
+   "description": "Retrieves historical price data for a symbol.\nParameters:\n    symbol: Symbol to get data for\n    interval: Data interval (\"daily\", \"weekly\", \"monthly\")\n    start (optional): Start date in YYYY-MM-DD format\n    end (optional): End date in YYYY-MM-DD format\nReturns:\n    Map: Historical price data with OHLCV information\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "symbol": {
+      "type": "string"
+     },
+     "interval": {
+      "type": "string"
+     },
+     "start": {
+      "type": "string"
+     },
+     "end": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "symbol",
+     "interval",
+     "start",
+     "end"
+    ]
+   }
+  },
+  {
+   "name": "place_multileg_option_order",
+   "description": "Places a multileg option order (spreads, straddles, etc.).\nParameters:\n    account_number: Account to place order in\n    symbol: Underlying symbol (e.g., \"AAPL\")\n    type: Order type (\"market\", \"debit\", \"credit\", \"even\")\n    duration: Order duration (\"day\", \"gtc\")\n    price: Price for limit orders (optional, required for debit/credit)\n    leg1_option_symbol: Option symbol for first leg (e.g., \"AAPL250321C00150000\")\n    leg1_side: Side for first leg (\"buy_to_open\", \"buy_to_close\", \"sell_to_open\", \"sell_to_close\")\n    leg1_quantity: Quantity for first leg\n    leg2_option_symbol: Option symbol for second leg\n    leg2_side: Side for second leg\n    leg2_quantity: Quantity for second leg\n    leg3_option_symbol: Option symbol for third leg (optional)\n    leg3_side: Side for third leg (optional)\n    leg3_quantity: Quantity for third leg (optional)\n    leg4_option_symbol: Option symbol for fourth leg (optional)\n    leg4_side: Side for fourth leg (optional)\n    leg4_quantity: Quantity for fourth leg (optional)\nReturns:\n    Map: Order confirmation with order ID and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "symbol": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "duration": {
+      "type": "string"
+     },
+     "price": {
+      "type": "string"
+     },
+     "leg1OptionSymbol": {
+      "type": "string"
+     },
+     "leg1Side": {
+      "type": "string"
+     },
+     "leg1Quantity": {
+      "type": "string"
+     },
+     "leg2OptionSymbol": {
+      "type": "string"
+     },
+     "leg2Side": {
+      "type": "string"
+     },
+     "leg2Quantity": {
+      "type": "string"
+     },
+     "leg3OptionSymbol": {
+      "type": "string"
+     },
+     "leg3Side": {
+      "type": "string"
+     },
+     "leg3Quantity": {
+      "type": "string"
+     },
+     "leg4OptionSymbol": {
+      "type": "string"
+     },
+     "leg4Side": {
+      "type": "string"
+     },
+     "leg4Quantity": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "symbol",
+     "type",
+     "duration",
+     "price",
+     "leg1OptionSymbol",
+     "leg1Side",
+     "leg1Quantity",
+     "leg2OptionSymbol",
+     "leg2Side",
+     "leg2Quantity",
+     "leg3OptionSymbol",
+     "leg3Side",
+     "leg3Quantity",
+     "leg4OptionSymbol",
+     "leg4Side",
+     "leg4Quantity"
+    ]
+   }
+  },
+  {
+   "name": "get_options_chain",
+   "description": "Retrieves options chain for a given symbol and expiration date.\nParameters:\n    symbol: Underlying symbol (e.g., \"AAPL\")\n    expiration: Expiration date in YYYY-MM-DD format\n    greeks (optional): Include Greeks calculation if asked (true/false, default: false)\nReturns:\n    Map: Options chain with strike prices, premiums, and Greeks if requested\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "symbol": {
+      "type": "string"
+     },
+     "expiration": {
+      "type": "string"
+     },
+     "greeks": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "symbol",
+     "expiration",
+     "greeks"
+    ]
+   }
+  },
+  {
+   "name": "get_company_profile",
+   "description": "Retrieves company profile information for one or more stock symbols.\nParameters:\n    symbols (String): Comma-separated stock symbols (e.g., \"AAPL\" or \"AAPL,MSFT,JNJ\")\nReturns:\n    List of Maps: Company profile details for each symbol including:\n        - symbol: Stock symbol\n        - longSummary: Summary of the company\n        - website: Company website\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "symbols": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "symbols"
+    ]
+   }
+  },
+  {
+   "name": "place_oco_order",
+   "description": "Places an OCO (One-Cancels-Other) order - two orders where if one executes, the other is cancelled.\nRequirements:\n    - Different order types required for each leg\n    - If both are equities, symbol must match\n    - If both are options, option_symbol must match\n    - Duration must match if specified per leg\nParameters:\n    account_number: Account to place order in\n    order1_class: Order class for first order (\"equity\" or \"option\")\n    order1_symbol: Symbol for first order\n    order1_option_symbol: Option symbol for first order (required if class is \"option\")\n    order1_side: Side for first order (\"buy\", \"sell\", \"buy_to_open\", etc.)\n    order1_quantity: Quantity for first order\n    order1_type: Order type for first order (\"market\", \"limit\", \"stop\", \"stop_limit\")\n    order1_duration: Duration for first order (\"day\", \"gtc\")\n    order1_price: Price for first order (optional)\n    order1_stop: Stop price for first order (optional)\n    order2_class: Order class for second order\n    order2_symbol: Symbol for second order (must match order1_symbol for equities)\n    order2_option_symbol: Option symbol for second order (must match order1_option_symbol for options)\n    order2_side: Side for second order\n    order2_quantity: Quantity for second order\n    order2_type: Order type for second order (must be different from order1_type)\n    order2_duration: Duration for second order\n    order2_price: Price for second order (optional)\n    order2_stop: Stop price for second order (optional)\nReturns:\n    Map: Order confirmation with order IDs and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "order1Class": {
+      "type": "string"
+     },
+     "order1Symbol": {
+      "type": "string"
+     },
+     "order1OptionSymbol": {
+      "type": "string"
+     },
+     "order1Side": {
+      "type": "string"
+     },
+     "order1Quantity": {
+      "type": "string"
+     },
+     "order1Type": {
+      "type": "string"
+     },
+     "order1Duration": {
+      "type": "string"
+     },
+     "order1Price": {
+      "type": "string"
+     },
+     "order1Stop": {
+      "type": "string"
+     },
+     "order2Class": {
+      "type": "string"
+     },
+     "order2Symbol": {
+      "type": "string"
+     },
+     "order2OptionSymbol": {
+      "type": "string"
+     },
+     "order2Side": {
+      "type": "string"
+     },
+     "order2Quantity": {
+      "type": "string"
+     },
+     "order2Type": {
+      "type": "string"
+     },
+     "order2Duration": {
+      "type": "string"
+     },
+     "order2Price": {
+      "type": "string"
+     },
+     "order2Stop": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "order1Class",
+     "order1Symbol",
+     "order1OptionSymbol",
+     "order1Side",
+     "order1Quantity",
+     "order1Type",
+     "order1Duration",
+     "order1Price",
+     "order1Stop",
+     "order2Class",
+     "order2Symbol",
+     "order2OptionSymbol",
+     "order2Side",
+     "order2Quantity",
+     "order2Type",
+     "order2Duration",
+     "order2Price",
+     "order2Stop"
+    ]
+   }
+  },
+  {
+   "name": "place_oto_order",
+   "description": "Places an OTO (One-Triggers-Other) order - first order must execute before second order is submitted.\nParameters:\n    account_number: Account to place order in\n    order1_class: Order class for first order (\"equity\" or \"option\")\n    order1_symbol: Symbol for first order\n    order1_option_symbol: Option symbol for first order (required if class is \"option\")\n    order1_side: Side for first order (\"buy\", \"sell\", \"buy_to_open\", etc.)\n    order1_quantity: Quantity for first order\n    order1_type: Order type for first order (\"market\", \"limit\", \"stop\", \"stop_limit\")\n    order1_duration: Duration for first order (\"day\", \"gtc\")\n    order1_price: Price for first order (optional)\n    order1_stop: Stop price for first order (optional)\n    order2_class: Order class for second (triggered) order\n    order2_symbol: Symbol for second order\n    order2_option_symbol: Option symbol for second order (required if class is \"option\")\n    order2_side: Side for second order\n    order2_quantity: Quantity for second order\n    order2_type: Order type for second order\n    order2_duration: Duration for second order\n    order2_price: Price for second order (optional)\n    order2_stop: Stop price for second order (optional)\nReturns:\n    Map: Order confirmation with order IDs and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "order1Class": {
+      "type": "string"
+     },
+     "order1Symbol": {
+      "type": "string"
+     },
+     "order1OptionSymbol": {
+      "type": "string"
+     },
+     "order1Side": {
+      "type": "string"
+     },
+     "order1Quantity": {
+      "type": "string"
+     },
+     "order1Type": {
+      "type": "string"
+     },
+     "order1Duration": {
+      "type": "string"
+     },
+     "order1Price": {
+      "type": "string"
+     },
+     "order1Stop": {
+      "type": "string"
+     },
+     "order2Class": {
+      "type": "string"
+     },
+     "order2Symbol": {
+      "type": "string"
+     },
+     "order2OptionSymbol": {
+      "type": "string"
+     },
+     "order2Side": {
+      "type": "string"
+     },
+     "order2Quantity": {
+      "type": "string"
+     },
+     "order2Type": {
+      "type": "string"
+     },
+     "order2Duration": {
+      "type": "string"
+     },
+     "order2Price": {
+      "type": "string"
+     },
+     "order2Stop": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "order1Class",
+     "order1Symbol",
+     "order1OptionSymbol",
+     "order1Side",
+     "order1Quantity",
+     "order1Type",
+     "order1Duration",
+     "order1Price",
+     "order1Stop",
+     "order2Class",
+     "order2Symbol",
+     "order2OptionSymbol",
+     "order2Side",
+     "order2Quantity",
+     "order2Type",
+     "order2Duration",
+     "order2Price",
+     "order2Stop"
+    ]
+   }
+  },
+  {
+   "name": "place_option_order",
+   "description": "Places an options order.\nParameters:\n    account_number: Account to place order in\n    symbol: Underlying symbol (e.g., \"AAPL\")\n    option_symbol: Full option symbol (e.g., \"AAPL032024C00150000\")\n    side: \"buy_to_open\", \"buy_to_close\", \"sell_to_open\", \"sell_to_close\"\n    quantity: Number of contracts\n    type: Order type (\"market\", \"limit\", \"stop\", \"stop_limit\")\n    duration: Order duration (\"day\", \"gtc\", \"pre\", \"post\")\n    price: Price for limit orders (optional)\nReturns:\n    Map: Order confirmation with order ID and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "symbol": {
+      "type": "string"
+     },
+     "optionSymbol": {
+      "type": "string"
+     },
+     "side": {
+      "type": "string"
+     },
+     "quantity": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "duration": {
+      "type": "string"
+     },
+     "price": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "symbol",
+     "optionSymbol",
+     "side",
+     "quantity",
+     "type",
+     "duration",
+     "price"
+    ]
+   }
+  },
+  {
+   "name": "place_otoco_order",
+   "description": "Places an OTOCO (One-Triggers-One-Cancels-Other) order - first order triggers two additional orders where one cancels the other.\nRequirements:\n    - Order 2 and 3 must have matching symbols (equities) or option_symbols (options)\n    - Order 2 and 3 must have different types\n    - Matching duration if specified per leg\nParameters:\n    account_number: Account to place order in\n    order1_class: Order class for first (trigger) order (\"equity\" or \"option\")\n    order1_symbol: Symbol for first order\n    order1_option_symbol: Option symbol for first order (required if class is \"option\")\n    order1_side: Side for first order\n    order1_quantity: Quantity for first order\n    order1_type: Order type for first order\n    order1_duration: Duration for first order (\"day\", \"gtc\")\n    order1_price: Price for first order (optional)\n    order1_stop: Stop price for first order (optional)\n    order2_class: Order class for second (triggered) order\n    order2_symbol: Symbol for second order\n    order2_option_symbol: Option symbol for second order\n    order2_side: Side for second order\n    order2_quantity: Quantity for second order\n    order2_type: Order type for second order\n    order2_duration: Duration for second order\n    order2_price: Price for second order (optional)\n    order2_stop: Stop price for second order (optional)\n    order3_class: Order class for third (triggered) order\n    order3_symbol: Symbol for third order (must match order2_symbol)\n    order3_option_symbol: Option symbol for third order (must match order2_option_symbol)\n    order3_side: Side for third order\n    order3_quantity: Quantity for third order\n    order3_type: Order type for third order (must be different from order2_type)\n    order3_duration: Duration for third order\n    order3_price: Price for third order (optional)\n    order3_stop: Stop price for third order (optional)\nReturns:\n    Map: Order confirmation with order IDs and details\n",
+   "inputSchema": {
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+     "accountNumber": {
+      "type": "string"
+     },
+     "order1Class": {
+      "type": "string"
+     },
+     "order1Symbol": {
+      "type": "string"
+     },
+     "order1OptionSymbol": {
+      "type": "string"
+     },
+     "order1Side": {
+      "type": "string"
+     },
+     "order1Quantity": {
+      "type": "string"
+     },
+     "order1Type": {
+      "type": "string"
+     },
+     "order1Duration": {
+      "type": "string"
+     },
+     "order1Price": {
+      "type": "string"
+     },
+     "order1Stop": {
+      "type": "string"
+     },
+     "order2Class": {
+      "type": "string"
+     },
+     "order2Symbol": {
+      "type": "string"
+     },
+     "order2OptionSymbol": {
+      "type": "string"
+     },
+     "order2Side": {
+      "type": "string"
+     },
+     "order2Quantity": {
+      "type": "string"
+     },
+     "order2Type": {
+      "type": "string"
+     },
+     "order2Duration": {
+      "type": "string"
+     },
+     "order2Price": {
+      "type": "string"
+     },
+     "order2Stop": {
+      "type": "string"
+     },
+     "order3Class": {
+      "type": "string"
+     },
+     "order3Symbol": {
+      "type": "string"
+     },
+     "order3OptionSymbol": {
+      "type": "string"
+     },
+     "order3Side": {
+      "type": "string"
+     },
+     "order3Quantity": {
+      "type": "string"
+     },
+     "order3Type": {
+      "type": "string"
+     },
+     "order3Duration": {
+      "type": "string"
+     },
+     "order3Price": {
+      "type": "string"
+     },
+     "order3Stop": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountNumber",
+     "order1Class",
+     "order1Symbol",
+     "order1OptionSymbol",
+     "order1Side",
+     "order1Quantity",
+     "order1Type",
+     "order1Duration",
+     "order1Price",
+     "order1Stop",
+     "order2Class",
+     "order2Symbol",
+     "order2OptionSymbol",
+     "order2Side",
+     "order2Quantity",
+     "order2Type",
+     "order2Duration",
+     "order2Price",
+     "order2Stop",
+     "order3Class",
+     "order3Symbol",
+     "order3OptionSymbol",
+     "order3Side",
+     "order3Quantity",
+     "order3Type",
+     "order3Duration",
+     "order3Price",
+     "order3Stop"
+    ]
+   }
+  }
+ ]
+}

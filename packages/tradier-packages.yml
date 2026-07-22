@@ -1,0 +1,87 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs/libraries + https://github.com/tradier + rubygems.org/npm registry probes
+notes: >-
+  Tradier's docs Libraries page lists only community libraries and states "These
+  libraries are not presently supported or endorsed by Tradier. They are provided
+  as-is." The Tradier GitHub org does publish a first-party (legacy, last released
+  2016) Ruby gem plus OAuth strategies, so those are recorded as official.
+packages:
+  - language: ruby
+    registry: rubygems
+    name: tradier
+    url: https://rubygems.org/gems/tradier
+    repository: https://github.com/tradier/tradier.rb
+    install: gem install tradier
+    official: true
+    note: First-party Rubygem from the Tradier GitHub org (MIT). Last release 0.5.6, 2016 — legacy, not listed on the current docs Libraries page.
+  - language: ruby
+    registry: rubygems
+    name: omniauth-tradier
+    url: https://github.com/tradier/omniauth-tradier
+    repository: https://github.com/tradier/omniauth-tradier
+    install: gem install omniauth-tradier
+    official: true
+    note: First-party OmniAuth strategy for Tradier OAuth (legacy).
+  - language: javascript
+    registry: github
+    name: passport-tradier
+    url: https://github.com/tradier/passport-tradier
+    repository: https://github.com/tradier/passport-tradier
+    official: true
+    note: First-party Passport.js OAuth strategy for Node.js (legacy).
+  - language: python
+    registry: github
+    name: lumiwealth-tradier
+    url: https://github.com/Lumiwealth/lumiwealth-tradier
+    official: false
+    note: Community library, listed on the docs Libraries page.
+  - language: python
+    registry: github
+    name: uvatradier
+    url: https://github.com/thammo4/uvatradier
+    official: false
+    note: Community library, listed on the docs Libraries page.
+  - language: python
+    registry: github
+    name: python-tradier
+    url: https://github.com/cablehead/python-tradier
+    official: false
+    note: Community library, listed on the docs Libraries page.
+  - language: python
+    registry: github
+    name: PyTradier
+    url: https://github.com/rleonard21/PyTradier
+    official: false
+    note: Community library, listed on the docs Libraries page.
+  - language: csharp
+    registry: github
+    name: TradierClient
+    url: https://github.com/tsconn23/TradierClient
+    official: false
+    note: Community .NET library, listed on the docs Libraries page.
+  - language: csharp
+    registry: github
+    name: tradier-dotnet-client
+    url: https://github.com/vitali-karmanov/tradier-dotnet-client
+    official: false
+    note: Community .NET library, listed on the docs Libraries page.
+  - language: cpp
+    registry: github
+    name: libTradier
+    url: https://github.com/rowingdude/libtradier
+    official: false
+    note: Community C++ library, listed on the docs Libraries page.
+  - language: java
+    registry: github
+    name: AndroidTradier
+    url: https://github.com/Utsav2/AndroidTradier
+    official: false
+    note: Community Android library, listed on the docs Libraries page.
+  - language: javascript
+    registry: npm
+    name: tradier
+    url: https://www.npmjs.com/package/tradier
+    install: npm install tradier
+    official: false
+    note: Community npm SDK for the Tradier API (not published by Tradier).

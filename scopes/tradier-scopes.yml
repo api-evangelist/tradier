@@ -1,0 +1,39 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs/authentication
+docs: https://docs.tradier.com/docs/authentication
+notes: >-
+  The OpenAPI models auth as a plain HTTP bearer scheme, so the derive pass found
+  no oauth2 flows; the scopes below come from Tradier's OAuth documentation.
+  OAuth (authorization-code flow) is for Tradier partners building public apps;
+  individual developers use a personal API token without scopes. The separate
+  MCP-server authorization server (p-be-auth.tradier.com) advertises its own
+  scopes: openid, mcp, claudeai (see well-known/tradier-mcp-oauth-authorization-server.json).
+schemes:
+  - name: OAuth2
+    source: https://docs.tradier.com/docs/authentication
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://api.tradier.com/v1/oauth/authorize
+        tokenUrl: https://api.tradier.com/v1/oauth/accesstoken
+        refreshUrl: https://api.tradier.com/v1/oauth/refreshtoken
+    token_lifespans:
+      authorization_code: 10 minutes
+      access_token: 24 hours
+      refresh_token: does not expire (approved partners only)
+scopes:
+  - scope: read
+    description: Read access to account information, positions, and market data.
+    flows: [authorizationCode]
+  - scope: write
+    description: Write access to account data (does not include placing or updating trades).
+    flows: [authorizationCode]
+  - scope: market
+    description: Access market data (does not include streaming).
+    flows: [authorizationCode]
+  - scope: trade
+    description: Permission to place and manage trades.
+    flows: [authorizationCode]
+  - scope: stream
+    description: Access to real-time streaming data.
+    flows: [authorizationCode]

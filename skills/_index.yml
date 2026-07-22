@@ -1,0 +1,15 @@
+generated: '2026-07-22'
+method: generated
+skills:
+  - file: tradier-quote-and-option-chain.md
+    name: Look up quotes and option chains
+    api: openapi/tradier-openapi.yml
+    operations: [getClock, getQuotes, getOptionExpirations, getOptionStrikes, getOptionChains]
+  - file: tradier-place-and-track-equity-order.md
+    name: Place and track an equity order
+    api: openapi/tradier-openapi.yml
+    operations: [getUserProfile, getAccountBalances, placeOrder, getOrder, cancelOrder]
+  - file: tradier-stream-market-data.md
+    name: Stream real-time market data
+    api: openapi/tradier-openapi.yml
+    operations: [createMarketStreamingSession, createAccountStreamingSession]

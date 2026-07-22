@@ -1,0 +1,34 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs/error-responses
+format: http-status + message body (not RFC 9457)
+envelope: >-
+  Most failures return an appropriate HTTP status with an explanatory message in
+  the body. Order placement is the exception: downstream rejections (risk
+  management, market centers) come back as HTTP 200 — the order's status must be
+  checked via getOrder, whose response includes an `errors` property with coded
+  details (see errors/tradier-error-codes.yml).
+problems:
+  - status: 400
+    title: Bad request
+    detail: Check the response body for an error message that helps decipher the problem.
+    remediation: Correct the request parameters and retry.
+  - status: 401
+    title: Authentication / entitlement error
+    detail: Related to authentication and entitlement.
+    remediation: >-
+      Verify you are using the correct credentials (production vs sandbox token) and
+      the correct endpoint for your access level.
+  - status: 500
+    title: Internal server error
+    detail: Something is not working properly with the API.
+    remediation: Report to techsupport@tradier.com.
+  - status: 200
+    title: Order-level error (deferred)
+    detail: >-
+      Order placement returns 200 even when downstream systems reject the order;
+      the rejection appears in the order's `errors` property.
+    remediation: >-
+      Poll GET /accounts/{account_id}/orders/{order_id} (getOrder) and inspect the
+      errors payload; map codes via errors/tradier-error-codes.yml.
+    source_operation: openapi/tradier-openapi.yml#placeOrder

@@ -2,7 +2,19 @@ aid: tradier
 url: https://raw.githubusercontent.com/api-evangelist/tradier/refs/heads/main/apis.yml
 name: Tradier
 kind: company
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tradier.png
 tags:
   - Fintech
   - Trading
@@ -11,7 +23,7 @@ tags:
   - Brokerage
   - Streaming
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-07-22'
 specificationVersion: '0.19'
 description: >-
   Tradier is a brokerage platform offering REST and WebSocket APIs for trading
@@ -82,7 +94,45 @@ apis:
       - Stream live ticks into trading bots
       - Power real-time UI updates
       - Monitor order state changes in real time
+  - aid: tradier:mcp-server
+    name: Tradier MCP Server
+    tags:
+      - MCP
+      - Agents
+      - Trading
+      - Market Data
+      - AI
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://mcp.tradier.com/mcp
+    humanURL: https://docs.tradier.com/docs/tradier-mcp
+    description: >-
+      Tradier's official hosted MCP server (launched July 2026) connects AI
+      assistants like ChatGPT, Claude, Gemini CLI, and Cursor directly to a
+      Tradier brokerage account over Streamable HTTP. It exposes 21 tools for
+      account data, equity/option/multileg/OCO/OTO/OTOCO order placement,
+      market data, and watchlists, authenticated with the user's API token and
+      a PAPER_TRADING flag for live-vs-paper switching.
+    properties:
+      - type: Documentation
+        url: https://docs.tradier.com/docs/tradier-mcp
+      - type: MCPServer
+        url: mcp/tradier-mcp.yml
+      - type: ToolCrosswalk
+        url: mcp/tradier-tool-crosswalk.yml
+    x-features:
+      - 21 tools with public tools/list schemas
+      - Streamable HTTP transport
+      - Live and paper trading via PAPER_TRADING flag
+      - Built-in documentation search
+    x-use-cases:
+      - Trade and manage a brokerage account from an AI assistant
+      - Build agentic trading research workflows
+      - Query market data conversationally
 common:
+  - type: AgenticAccess
+    url: agentic-access/tradier-agentic-access.yml
+  - type: Authentication
+    url: authentication/tradier-authentication.yml
   - type: VulnerabilityDisclosure
     url: security/tradier-vulnerability-disclosure.yml
   - type: DomainSecurity
@@ -109,6 +159,56 @@ common:
     url: https://docs.tradier.com/llms.txt
   - url: https://blog.tradier.com/blog/rss.xml
     type: Blog
+  - type: Security
+    url: https://tradier.com/legal/vulnerability-disclosure-policy
+  - type: APIReference
+    url: https://docs.tradier.com/reference/brokerage-api-user-get-profile
+  - type: GettingStarted
+    url: https://docs.tradier.com/docs/getting-started
+  - type: Support
+    url: https://support.tradier.com/
+  - type: TermsOfService
+    url: https://tradier.com/legal
+  - type: PrivacyPolicy
+    url: https://tradier.com/legal/privacy-policy
+  - type: SignUp
+    url: https://dash.tradier.com/sign-up
+  - type: MCPServer
+    url: mcp/tradier-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/tradier-tool-crosswalk.yml
+  - type: LLMsTxt
+    url: llms/tradier-llms.txt
+  - type: WellKnown
+    url: well-known/tradier-well-known.yml
+  - type: SecurityTxt
+    url: well-known/tradier-security.txt
+  - type: Packages
+    url: packages/tradier-packages.yml
+  - type: SDKs
+    url: packages/tradier-packages.yml
+  - type: OAuthScopes
+    url: scopes/tradier-scopes.yml
+  - type: Conformance
+    url: conformance/tradier-conformance.yml
+  - type: ErrorCatalog
+    url: errors/tradier-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/tradier-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/tradier-lifecycle.yml
+  - type: Sandbox
+    url: sandbox/tradier-sandbox.yml
+  - type: Conventions
+    url: conventions/tradier-conventions.yml
+  - type: ChangeLog
+    url: changelog/tradier-changelog.yml
+  - type: DataModel
+    url: data-model/tradier-data-model.yml
+  - type: Overlay
+    url: overlays/tradier-brokerage-overlay.yaml
+  - type: AgentSkill
+    url: skills/_index.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

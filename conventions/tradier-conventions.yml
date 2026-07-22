@@ -1,0 +1,45 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs (authentication, response-format, rate-limiting, error-responses) + openapi/tradier-openapi.yml
+authentication:
+  style: Bearer token in the Authorization header
+  token_types: [personal API token (individuals), OAuth 2.0 authorization-code access token (partners)]
+  docs: https://docs.tradier.com/docs/authentication
+  artifact: authentication/tradier-authentication.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header or replay-protection mechanism is documented for order placement.
+pagination:
+  style: page-based (limited surface)
+  params: [page, limit]
+  notes: >-
+    page/limit apply to account history and gain/loss endpoints; most collection
+    endpoints (orders, positions, watchlists) return complete result sets.
+content_negotiation:
+  default: application/xml
+  recommended: application/json (via Accept header)
+  notes: >-
+    XML is the default for legacy financial-industry reasons and will be removed in
+    future versions. JSON is produced by XML-to-JSON translation, with a known
+    issue where single-element lists may present as an object instead of an array.
+  compression: gzip via Accept-Encoding
+  docs: https://docs.tradier.com/docs/response-format
+request_bodies:
+  format: application/x-www-form-urlencoded for POST/PUT (order placement, watchlists, sessions)
+error_envelope:
+  shape: HTTP status + message body; order rejections surface as HTTP 200 with an order-level errors property
+  artifacts: [errors/tradier-problem-types.yml, errors/tradier-error-codes.yml]
+rate_limits:
+  interval: 1 minute, per access token
+  headers: [X-Ratelimit-Allowed, X-Ratelimit-Used, X-Ratelimit-Available, X-Ratelimit-Expiry]
+  docs: https://docs.tradier.com/docs/rate-limiting
+  artifact: rate-limits/tradier-rate-limits.yml
+versioning:
+  scheme: uri-path (/v1)
+  artifact: lifecycle/tradier-lifecycle.yml
+streaming:
+  session_bootstrap: >-
+    Streaming requires a short-lived sessionid created via REST
+    (createMarketStreamingSession / createAccountStreamingSession), valid for up
+    to 5 minutes prior to connecting; one streaming session per user.
+  artifact: asyncapi/tradier-asyncapi.yml

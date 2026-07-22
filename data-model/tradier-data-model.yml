@@ -1,0 +1,50 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/tradier-openapi.yml (paths + parameters) + asyncapi/tradier-asyncapi.yml
+entities:
+  - name: User
+    description: The authenticated Tradier user; owns one or more brokerage accounts.
+    operations: [getUserProfile]
+  - name: Account
+    id_field: account_id
+    description: Brokerage account holding balances, positions, orders, and history.
+    operations: [getAccountBalances, getAccountPositions, getAccountHistory, getAccountGainLoss]
+  - name: Order
+    id_field: order_id
+    description: Equity, option, or multileg order placed against an account.
+    operations: [listOrders, placeOrder, getOrder, modifyOrder, cancelOrder]
+  - name: Position
+    description: Open holding in an account (symbol, quantity, cost basis).
+    operations: [getAccountPositions]
+  - name: Quote
+    description: Market quote for an equity or option symbol.
+    operations: [getQuotes, postQuotes]
+  - name: Security
+    id_field: symbol
+    description: Tradable instrument (equity, ETF, option) identified by symbol.
+    operations: [searchSecurities, lookupSymbols, getHistory, getTimeSales]
+  - name: OptionChain
+    description: Option contracts for an underlying symbol, by expiration and strike.
+    operations: [getOptionChains, getOptionExpirations, getOptionStrikes]
+  - name: MarketCalendar
+    description: Market sessions, trading days, and holidays; current clock state.
+    operations: [getClock, getCalendar]
+  - name: Watchlist
+    id_field: watchlist_id
+    description: Named list of symbols maintained by the user.
+    operations: [listWatchlists, createWatchlist, getWatchlist, updateWatchlist, deleteWatchlist]
+  - name: StreamingSession
+    id_field: sessionid
+    description: Short-lived (5-minute) session token authorizing a WebSocket stream.
+    operations: [createMarketStreamingSession, createAccountStreamingSession]
+relationships:
+  - {from: User, to: Account, kind: has_many, via: account_id}
+  - {from: Account, to: Order, kind: has_many, via: order_id}
+  - {from: Account, to: Position, kind: has_many}
+  - {from: Account, to: StreamingSession, kind: has_one, via: sessionid, note: account-events stream}
+  - {from: User, to: Watchlist, kind: has_many, via: watchlist_id}
+  - {from: Watchlist, to: Security, kind: has_many, via: symbol}
+  - {from: Order, to: Security, kind: belongs_to, via: symbol}
+  - {from: Position, to: Security, kind: belongs_to, via: symbol}
+  - {from: Security, to: OptionChain, kind: has_many, via: symbol}
+  - {from: Security, to: Quote, kind: has_one, via: symbol}

@@ -1,0 +1,146 @@
+generated: '2026-07-22'
+method: derived
+source: >-
+  Derived by aligning the live MCP tools/list capture (mcp/tradier-mcp-tools.json,
+  21 tools with real inputSchemas, fetched anonymously from https://mcp.tradier.com/mcp)
+  with openapi/tradier-openapi.yml (28 operations).
+purpose: >-
+  Bind each Tradier MCP tool to the REST operation(s) that back it so the tool
+  inherits a real input contract. The MCP surface is a curated projection of the
+  Brokerage REST API: order placement fans out of one REST endpoint (POST
+  /accounts/{account_id}/orders) into six order-class-specific tools, while a few
+  tools are backed by REST endpoints not yet captured in our OpenAPI.
+surfaces:
+  rest_openapi: openapi/tradier-openapi.yml     # 28 operations; derived from docs (no provider-published spec found)
+  mcp: https://mcp.tradier.com/mcp              # tools/list is PUBLIC (anonymous session); tool calls require API_KEY
+  graphql: null
+crosswalk:
+  - tool: get_user_profile
+    category: account
+    rest: [getUserProfile]
+    binding: rest
+    confidence: high
+  - tool: get_account_balances
+    category: account
+    rest: [getAccountBalances]
+    binding: rest
+    confidence: high
+  - tool: get_positions
+    category: account
+    rest: [getAccountPositions]
+    binding: rest
+    confidence: high
+  - tool: get_account_history
+    category: account
+    rest: [getAccountHistory]
+    binding: rest
+    confidence: high
+  - tool: get_gainloss
+    category: account
+    rest: [getAccountGainLoss]
+    binding: rest
+    confidence: high
+  - tool: get_orders
+    category: trading
+    rest: [listOrders]
+    binding: rest
+    confidence: high
+  - tool: place_equity_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: high
+    note: POST /accounts/{account_id}/orders with class=equity.
+  - tool: place_option_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: high
+    note: POST /accounts/{account_id}/orders with class=option.
+  - tool: place_multileg_option_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: high
+    note: POST /accounts/{account_id}/orders with class=multileg (2-4 legs).
+  - tool: place_oco_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: medium
+    note: Advanced order class oco on the same order-placement endpoint; docs model it as a distinct class parameter.
+  - tool: place_oto_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: medium
+    note: Advanced order class oto on the same order-placement endpoint.
+  - tool: place_otoco_order
+    category: trading
+    rest: [placeOrder]
+    binding: rest
+    confidence: medium
+    note: Advanced order class otoco on the same order-placement endpoint.
+  - tool: cancel_order
+    category: trading
+    rest: [cancelOrder]
+    binding: rest
+    confidence: high
+  - tool: get_market_quotes
+    category: market-data
+    rest: [getQuotes]
+    binding: rest
+    confidence: high
+  - tool: get_historical_data
+    category: market-data
+    rest: [getHistory]
+    binding: rest
+    confidence: high
+  - tool: get_options_chain
+    category: market-data
+    rest: [getOptionChains]
+    binding: rest
+    confidence: high
+  - tool: get_market_calendar
+    category: market-data
+    rest: [getCalendar]
+    binding: rest
+    confidence: high
+  - tool: get_watchlists
+    category: watchlists
+    rest: [listWatchlists]
+    binding: rest
+    confidence: high
+  - tool: add_to_watchlist
+    category: watchlists
+    rest: [updateWatchlist]
+    binding: rest
+    confidence: low
+    note: >-
+      The docs expose a dedicated POST /watchlists/{watchlist_id}/symbols endpoint for
+      adding symbols, which is not captured in our OpenAPI; updateWatchlist (PUT) is the
+      nearest captured operation.
+mcp_only:
+  - tool: get_account_historical_balances
+    reason: >-
+      Backed by the historical-balances REST endpoint, which is not captured in
+      openapi/tradier-openapi.yml; no matching operationId to bind.
+  - tool: get_company_profile
+    reason: >-
+      Backed by Tradier's beta fundamentals/company-information endpoints, which are not
+      captured in openapi/tradier-openapi.yml.
+rest_only:
+  - capability: order management detail
+    operations: [getOrder, modifyOrder]
+  - capability: market data
+    operations: [postQuotes, getTimeSales, searchSecurities, lookupSymbols, getClock, getOptionExpirations, getOptionStrikes]
+  - capability: watchlist management
+    operations: [createWatchlist, getWatchlist, deleteWatchlist]
+  - capability: streaming session creation
+    operations: [createMarketStreamingSession, createAccountStreamingSession]
+coverage:
+  mcp_tools: 21
+  mcp_tools_bound: 19
+  mcp_only: 2
+  rest_operations: 28
+  rest_operations_with_tool: 14

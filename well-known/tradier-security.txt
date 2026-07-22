@@ -1,0 +1,8 @@
+# Tradier Security Contact
+# https://securitytxt.org/
+
+Contact:https://tradier.com/legal/vulnerability-disclosure-policy
+Expires: 2027-01-20T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://tradier.com/.well-known/security.txt
+Policy: https://tradier.com/legal/vulnerability-disclosure-policy

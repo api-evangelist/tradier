@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Tradier Brokerage API
+  version: 1.0.0
+extends: openapi/tradier-openapi.yml
+x-provenance:
+  generated: '2026-07-22'
+  method: generated
+  source: apievangelist enrichment pipeline
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: tradier
+        artifacts:
+          authentication: authentication/tradier-authentication.yml
+          scopes: scopes/tradier-scopes.yml
+          conventions: conventions/tradier-conventions.yml
+          errors: errors/tradier-error-codes.yml
+          rate-limits: rate-limits/tradier-rate-limits.yml
+          sandbox: sandbox/tradier-sandbox.yml
+          mcp: mcp/tradier-mcp.yml
+          tool-crosswalk: mcp/tradier-tool-crosswalk.yml
+  - target: $.paths['/accounts/{account_id}/orders'].post
+    update:
+      x-mcp-tools: [place_equity_order, place_option_order, place_multileg_option_order, place_oco_order, place_oto_order, place_otoco_order]
+      x-error-catalog: errors/tradier-error-codes.yml
+      x-note: >-
+        Downstream rejections return HTTP 200; poll getOrder and inspect the
+        order-level errors property.
+  - target: $.paths['/markets/quotes'].get
+    update:
+      x-mcp-tools: [get_market_quotes]
+  - target: $.paths['/markets/options/chains'].get
+    update:
+      x-mcp-tools: [get_options_chain]
+  - target: $.components.securitySchemes.bearerAuth
+    update:
+      x-token-source: https://web.tradier.com/user/api
+      x-sandbox: sandbox/tradier-sandbox.yml

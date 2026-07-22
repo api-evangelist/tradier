@@ -1,0 +1,26 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs/getting-started + https://docs.tradier.com/docs/rate-limiting + https://docs.tradier.com/docs/tradier-mcp
+environment:
+  base_url: https://sandbox.tradier.com/v1
+  production_url: https://api.tradier.com/v1
+  separation: >-
+    Separate Sandbox (paper trading) token, generated alongside the Production
+    token at https://web.tradier.com/user/api. Same endpoint surface under /v1
+    on the sandbox host.
+tokens:
+  production: Live trading and real-time market data
+  sandbox: Testing and development with paper trading (delayed market data)
+  source: https://web.tradier.com/user/api
+market_data: Sandbox market data is delayed (paper trading environment).
+rate_limits:
+  standard: 60 requests/minute (production 120)
+  market_data: 60 requests/minute (production 120)
+  trading: 60 requests/minute (production 60)
+mcp:
+  paper_trading_flag: >-
+    The hosted MCP server switches between live and paper accounts via the
+    PAPER_TRADING header/parameter (true = paper-trading token, false = live).
+test_values: >-
+  No published magic test symbols, accounts, or fixture values — the sandbox is
+  a full paper-trading account rather than a canned-fixture environment.

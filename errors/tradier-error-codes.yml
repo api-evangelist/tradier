@@ -1,0 +1,78 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.tradier.com/docs/error-responses
+description: >-
+  Order-related error code registry. The place-order API returns HTTP 200 for
+  errors thrown by downstream systems (risk management, market centers); the
+  order's status is checked via the GET order endpoint, whose response includes
+  an `errors` property carrying these codes. Most common on complex order
+  placement, modification, and cancellation.
+envelope_field: order.errors
+codes:
+  - {code: AccountDisabled, message: "Account is disabled for trading. Please contact 980-272-3880 for questions or concerns."}
+  - {code: AccountIsNotApproved, message: "Account is not approved for trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: AccountMarginRuleViolation, message: "Margin rules prohibit this transaction. Please contact 980-272-3880 for questions or concerns"}
+  - {code: AssetTradingNotConfiguredForAccount, message: "The order requested is not available for your account. Please contact 980-272-3880 for questions or concerns"}
+  - {code: BuyStopOrderStopPriceLessAsk, message: "Buy Stop order must have a Stop price greater than the current Ask price"}
+  - {code: ContingentOrderExecution, message: "Placement Condition: when {0} {1} is {2} than {3}"}
+  - {code: DayTraderPatternRestriction, message: "Your day trade limit exceeded. Please contact 980-272-3880 for questions or concerns"}
+  - {code: DayTradingBuyingPowerExceeded, message: "There is not enough day trading buying power for the requested order"}
+  - {code: ExpirationDateUndefined, message: "Expiration date for option is not defined"}
+  - {code: IncorrectOrderQuantity, message: "Quantity should be between 1 and 10,000,000"}
+  - {code: IncorrectTimeInForce, message: "Time In Force (Day or GTC) is not defined"}
+  - {code: IndexOptionsOneExparyDate, message: "Multi Leg Orders with Index options must have all legs within 1 expiration date. Time spreads are not allowed on Index Options"}
+  - {code: InitialMargin, message: "You do not have enough buying power for this trade"}
+  - {code: InvalidOrderExpiration, message: "Expiration date must be greater than the current date"}
+  - {code: LimitPriceUndefined, message: "Limit price is not valid. Please check the price entered"}
+  - {code: LongOptionTradingDeniedForAccount, message: "Account is restricted for option trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: LongPositionCrossZero, message: "Sell order is for more shares than your current long position, please review current position quantity along with open orders for security."}
+  - {code: MaintenanceMargin, message: "You do not have enough buying power for this trade"}
+  - {code: MarketOrderIsGtc, message: "You cannot place market orders with GTC, only day orders are allowed"}
+  - {code: OcoExpirationTypeNotTheSame, message: "Expiration type of OCO orders must be the same"}
+  - {code: OcoOrderWithOppositeLegs, message: "You cannot place OCO order with orders for the same security and with opposite trade direction"}
+  - {code: OcoPriceDifferenceIsLessThanDelta, message: "OCO price difference should be at least ${0}"}
+  - {code: OmsInternalError, message: "Your order could not be processed. Please contact 980-272-3880 for questions or concerns"}
+  - {code: OmsUnavailable, message: "Trading services are not available online currently, please contact 980-272-3880 for order requests"}
+  - {code: OptionLevelRestriction, message: "Your account does not have the option level permission for this trade. Please contact 980-272-3880 for questions or concerns"}
+  - {code: OptionTypeUndefined, message: "Type of option (call or put) is not defined"}
+  - {code: OrderContingentChangeNotAllowed, message: "Change of order's contingent is not allowed"}
+  - {code: OrderIsNotAllowedForAccount, message: "Order is not allowed. Account trading restriction: closing orders only"}
+  - {code: OrderPriceIsInvalid, message: "Price of {0} {1} order is {2} than market price"}
+  - {code: OrderQuantity, message: "You cannot place orders with quantity less than 1"}
+  - {code: OrderWithDifferentSide, message: "You cannot have pending orders with different sides for selected symbol where one is a MARKET order. You must close another pending order in order to place a SHORT order, or try a limit order instead"}
+  - {code: OtoFirstLegIsMarketNotAllowed, message: "First market order in OTO is not allowed"}
+  - {code: OtoOcoMarketNotAllowed, message: "OCO market orders are not allowed"}
+  - {code: OtoOcoTrailingNotAllowed, message: "OTO/OCO trailing orders are not allowed"}
+  - {code: QuotePriceIsInvalid, message: "There is no quote for the symbol requested, please contact 980-272-3880 to place the order."}
+  - {code: SecurityUndefined, message: "Symbol does not exist. Please contact 980-272-3880 for questions or concerns"}
+  - {code: SellShortOrderLastPriceBelow5, message: "Sell Short order cannot be placed for stock priced below $5"}
+  - {code: SellStopOrderStopPriceGreaterBid, message: "Sell Stop order must have a Stop price less than the Bid price"}
+  - {code: ShortOptionTradingDeniedForAccount, message: "Account is restricted for option trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: ShortOrderIsGtc, message: "You cannot place short stock orders with GTC, only day orders are allowed"}
+  - {code: ShortPositionCrossZero, message: "Buy order is for more shares than your current short position, please review current position quantity along with open orders for security."}
+  - {code: ShortStockTradingDeniedForAccount, message: "Account is restricted from short sales. Please contact 980-272-3880 for questions or concerns"}
+  - {code: ShortTradingDeniedForSecurity, message: "This symbol is not available for short sales. Please contact 980-272-3880 for questions or concerns"}
+  - {code: SpreadTradingDeniedForAccount, message: "Account is restricted for spread trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: StopPriceUndefined, message: "Stop price is not defined"}
+  - {code: StrikePriceUndefined, message: "Strike price for option leg is not defined"}
+  - {code: TooSmallEquityForDayTrading, message: "Pattern Day Trader Rule violation: Equity balance fell below $25,000"}
+  - {code: TotalInitialMargin, message: "You do not have enough buying power for this trade"}
+  - {code: TradeNonStandardOptions, message: "You cannot place an order with non standard options"}
+  - {code: TradingDeniedForAccount, message: "Account is restricted for trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: TradingDeniedForSecurity, message: "This asset class is restricted for trading"}
+  - {code: UnexpectedBuyOrder, message: "Buy order cannot be placed to cover short position, order must be placed as a Buy to Cover"}
+  - {code: UnexpectedBuyOrderOption, message: "Buy To Open order cannot be placed to close a short option position, order must be placed as a Buy to Close"}
+  - {code: UnexpectedBuyToCoverOrder, message: "Buy To Cover order cannot be placed unless closing a short position, please check open orders."}
+  - {code: UnexpectedBuyToCoverOrderOption, message: "Buy To Close order cannot be placed unless closing a short option position, please check open orders."}
+  - {code: UnexpectedSellOrder, message: "Sell order cannot be placed unless you are closing a long position, please check open orders."}
+  - {code: UnexpectedSellOrderOption, message: "Sell to Close order cannot be placed unless you are closing a long option position, please check open orders."}
+  - {code: UnexpectedSellShortOrder, message: "Sell short order cannot be placed while you have a current long position, please check open orders."}
+  - {code: UnexpectedSellShortOrderOption, message: "Sell to Open order cannot be placed while you have a current long option position, please check open orders."}
+  - {code: UserDisabled, message: "Account is disabled for trading. Please contact 980-272-3880 for questions or concerns"}
+  - {code: WashTradeAttempt, message: "You are unable to place orders on the same security and same price in different direction"}
+uncoded_messages:
+  - "Pre-market trading is currently unavailable."
+  - "Tradier Brokerage does not accept opening orders for OTC-BB and Pink Sheet securities, please contact us at (980)-272-3880 if you have any questions."
+  - "Due to price volatility a limit order must be placed."
+  - "Outside of market hours this order is required to be placed at a limit price."
+  - "Order failed PriceRange - AGGRESSIVE: OrderPrice {1} RefPrice {2} Limit {3} aggressive"

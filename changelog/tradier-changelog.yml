@@ -1,0 +1,40 @@
+generated: '2026-07-22'
+method: searched
+source: https://blog.tradier.com/blog/rss.xml
+scheme: >-
+  No dated API changelog page is published (docs.tradier.com/changelog is 404).
+  Product and API changes are announced through the Tradier blog, including
+  recurring monthly "Product Digest" posts. Recent entries below are drawn from
+  the blog feed archived in blogs/.
+current_version: v1
+entries:
+  - date: '2026-07-16'
+    title: Meet Your AI Trading Agent — Tradier MCP server launch
+    kind: addition
+    url: https://blog.tradier.com/blog/meet-your-ai-trading-agent-connect-tradier-to-your-favorite-ai-assistant
+    highlights:
+      - Hosted MCP server (mcp.tradier.com) connecting Tradier accounts to ChatGPT, Claude, Gemini CLI, and Cursor
+  - date: '2026-06-05'
+    title: The Pattern Day Trader (PDT) rule is gone
+    kind: change
+    url: https://blog.tradier.com/blog/the-pattern-day-trader-pdt-rule-is-gone-what-active-traders
+    highlights:
+      - PDT restrictions removed for active traders
+  - date: '2026-01-30'
+    title: Swipe to Roll options
+    kind: addition
+    url: https://blog.tradier.com/blog/swipe-to-roll-options-a-faster-way-to-trade-on-tradier
+    highlights:
+      - Faster option-rolling workflow
+  - date: '2026-01-29'
+    title: Tradier January Product Digest
+    kind: digest
+    url: https://blog.tradier.com/blog/tradier-january-product-digest
+  - date: '2025-12-23'
+    title: Tradier December Product Digest
+    kind: digest
+    url: https://blog.tradier.com/blog/tradier-december-product-digest
+  - date: '2025-07-21'
+    title: More accurate SPX pricing
+    kind: change
+    url: https://blog.tradier.com/blog/update-more-accurate-spx-pricing-is-available
