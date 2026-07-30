@@ -31,103 +31,107 @@ description: >-
   The Tradier Brokerage API exposes account, trading, market data, fundamentals,
   watchlist, and streaming endpoints under a single base URL.
 apis:
-  - aid: tradier:brokerage-api
-    name: Tradier Brokerage API
-    tags:
-      - Trading
-      - Stocks
-      - Options
-      - Account
-      - Orders
-      - Market Data
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://api.tradier.com/v1
-    humanURL: https://docs.tradier.com/
-    description: >-
-      The Tradier Brokerage API provides REST endpoints for placing equity,
-      option, and multileg orders, retrieving account balances, positions,
-      orders, and history, and accessing market data including quotes, option
-      chains, time and sales, fundamentals, and corporate calendars. A sandbox
-      base URL is available at api.sandbox.tradier.com/v1.
-    properties:
-      - type: Documentation
-        url: https://docs.tradier.com/
-      - type: Sandbox
-        url: https://api.sandbox.tradier.com/v1
-    x-features:
-      - Equity, option, and multileg order placement
-      - Account balances, positions, history
-      - Quotes, option chains, time and sales
-      - Corporate calendars and fundamentals
-      - Watchlists
-      - Sandbox environment
-    x-use-cases:
-      - Build automated equity and options trading systems
-      - Power retail trading and watchlist apps
-      - Backtest using sandbox accounts
-  - aid: tradier:streaming-api
-    name: Tradier Streaming API
-    tags:
-      - Streaming
-      - WebSocket
-      - HTTP
-      - Real-time
-      - Market Data
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://stream.tradier.com/v1
-    humanURL: https://docs.tradier.com/brokerage-api/streaming
-    description: >-
-      The Tradier Streaming API delivers real-time market and account events
-      over HTTP and WebSocket. Quote, trade, summary, timesale, and order
-      events are streamed; client first creates a session via the brokerage
-      REST endpoints and connects to stream.tradier.com.
-    properties:
-      - type: Documentation
-        url: https://docs.tradier.com/brokerage-api/streaming
-      - type: AsyncAPI
-        url: asyncapi/tradier-asyncapi.yml
-    x-features:
-      - HTTP and WebSocket streaming
-      - Quote, trade, summary, timesale events
-      - Account-level order events
-    x-use-cases:
-      - Stream live ticks into trading bots
-      - Power real-time UI updates
-      - Monitor order state changes in real time
-  - aid: tradier:mcp-server
-    name: Tradier MCP Server
-    tags:
-      - MCP
-      - Agents
-      - Trading
-      - Market Data
-      - AI
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://mcp.tradier.com/mcp
-    humanURL: https://docs.tradier.com/docs/tradier-mcp
-    description: >-
-      Tradier's official hosted MCP server (launched July 2026) connects AI
-      assistants like ChatGPT, Claude, Gemini CLI, and Cursor directly to a
-      Tradier brokerage account over Streamable HTTP. It exposes 21 tools for
-      account data, equity/option/multileg/OCO/OTO/OTOCO order placement,
-      market data, and watchlists, authenticated with the user's API token and
-      a PAPER_TRADING flag for live-vs-paper switching.
-    properties:
-      - type: Documentation
-        url: https://docs.tradier.com/docs/tradier-mcp
-      - type: MCPServer
-        url: mcp/tradier-mcp.yml
-      - type: ToolCrosswalk
-        url: mcp/tradier-tool-crosswalk.yml
-    x-features:
-      - 21 tools with public tools/list schemas
-      - Streamable HTTP transport
-      - Live and paper trading via PAPER_TRADING flag
-      - Built-in documentation search
-    x-use-cases:
-      - Trade and manage a brokerage account from an AI assistant
-      - Build agentic trading research workflows
-      - Query market data conversationally
+- aid: tradier:brokerage-api
+  name: Tradier Brokerage API
+  tags:
+  - Trading
+  - Stocks
+  - Options
+  - Account
+  - Orders
+  - Market Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.tradier.com/v1
+  humanURL: https://docs.tradier.com/
+  description: >-
+    The Tradier Brokerage API provides REST endpoints for placing equity, option, and multileg orders,
+    retrieving account balances, positions, orders, and history, and accessing market data including quotes,
+    option chains, time and sales, fundamentals, and corporate calendars. A sandbox base URL is available
+    at api.sandbox.tradier.com/v1.
+  properties:
+  - type: Documentation
+    url: https://docs.tradier.com/
+  - type: Sandbox
+    url: https://api.sandbox.tradier.com/v1
+  x-features:
+  - Equity, option, and multileg order placement
+  - Account balances, positions, history
+  - Quotes, option chains, time and sales
+  - Corporate calendars and fundamentals
+  - Watchlists
+  - Sandbox environment
+  x-use-cases:
+  - Build automated equity and options trading systems
+  - Power retail trading and watchlist apps
+  - Backtest using sandbox accounts
+- aid: tradier:streaming-api
+  name: Tradier Streaming API
+  tags:
+  - Streaming
+  - WebSocket
+  - HTTP
+  - Real-time
+  - Market Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://stream.tradier.com/v1
+  humanURL: https://docs.tradier.com/brokerage-api/streaming
+  description: >-
+    The Tradier Streaming API delivers real-time market and account events over HTTP and WebSocket. Quote,
+    trade, summary, timesale, and order events are streamed; client first creates a session via the brokerage
+    REST endpoints and connects to stream.tradier.com.
+  properties:
+  - type: Documentation
+    url: https://docs.tradier.com/brokerage-api/streaming
+  - type: AsyncAPI
+    url: asyncapi/tradier-asyncapi.yml
+  x-features:
+  - HTTP and WebSocket streaming
+  - Quote, trade, summary, timesale events
+  - Account-level order events
+  x-use-cases:
+  - Stream live ticks into trading bots
+  - Power real-time UI updates
+  - Monitor order state changes in real time
+- aid: tradier:mcp-server
+  name: Tradier MCP Server
+  tags:
+  - MCP
+  - Agents
+  - Trading
+  - Market Data
+  - AI
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://mcp.tradier.com/mcp
+  humanURL: https://docs.tradier.com/docs/tradier-mcp
+  description: >-
+    Tradier's official hosted MCP server (launched July 2026) connects AI assistants like ChatGPT, Claude,
+    Gemini CLI, and Cursor directly to a Tradier brokerage account over Streamable HTTP. It exposes 21
+    tools for account data, equity/option/multileg/OCO/OTO/OTOCO order placement, market data, and watchlists,
+    authenticated with the user's API token and a PAPER_TRADING flag for live-vs-paper switching.
+  properties:
+  - type: Documentation
+    url: https://docs.tradier.com/docs/tradier-mcp
+  - type: MCPServer
+    url: mcp/tradier-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/tradier-tool-crosswalk.yml
+  x-features:
+  - 21 tools with public tools/list schemas
+  - Streamable HTTP transport
+  - Live and paper trading via PAPER_TRADING flag
+  - Built-in documentation search
+  x-use-cases:
+  - Trade and manage a brokerage account from an AI assistant
+  - Build agentic trading research workflows
+  - Query market data conversationally
+- aid: tradier:tradier-openapi
+  name: Tradier Brokerage API
+  description: Tradier Brokerage API from Tradier — 21 path(s) described in OpenAPI.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/tradier-agentic-access.yml
