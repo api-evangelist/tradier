@@ -1,0 +1,2466 @@
+{
+  "info": {
+    "_postman_id": "d9152e29-693c-4d0d-9e16-43809b8f11ed",
+    "name": "Tradier Brokerage API",
+    "description": "REST API for the Tradier brokerage platform covering trading,\naccount management, market data, watchlists, and streaming session\ncreation for US equities and options.\n\nSource: https://docs.tradier.com/ (endpoints aggregated from the\npublic llms.txt index and reference documentation).\n\n\nContact Support:\n Name: Tradier",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-08-03T11:20:32.000Z",
+    "updatedAt": "2026-08-03T11:20:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d9152e29-693c-4d0d-9e16-43809b8f11ed"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "profile",
+          "item": [
+            {
+              "name": "Get user profile",
+              "id": "ed10573f-8109-466a-a2e2-f93907a148ff",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/user/profile",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d4a42c76-06bd-4541-ae81-cc5f4dc63642",
+                  "name": "User profile information.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/profile",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "profile"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-d4a42c76-06bd-4541-ae81-cc5f4dc63642"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-ed10573f-8109-466a-a2e2-f93907a148ff"
+            }
+          ],
+          "id": "a72e1dd5-e9a8-4e04-aa46-e44583952157",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-a72e1dd5-e9a8-4e04-aa46-e44583952157"
+        }
+      ],
+      "id": "7101248f-fc76-4964-a653-d758a7da5db3",
+      "createdAt": "2026-08-03T11:20:32.000Z",
+      "updatedAt": "2026-08-03T11:20:32.000Z",
+      "uid": "35240-7101248f-fc76-4964-a653-d758a7da5db3"
+    },
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{account_id}",
+          "item": [
+            {
+              "name": "balances",
+              "item": [
+                {
+                  "name": "Get account balances",
+                  "id": "64caed7d-dc25-4fb9-80f6-4755d2467874",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/balances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "balances"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b252166d-5b7b-48f8-ac72-44716beae16f",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8acf3105-b8c4-40e2-a72c-0b93f389b45c",
+                      "name": "Account balance and margin information.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/balances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "balances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-8acf3105-b8c4-40e2-a72c-0b93f389b45c"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-64caed7d-dc25-4fb9-80f6-4755d2467874"
+                }
+              ],
+              "id": "565bcd17-1686-4fb6-8152-1a470e6437cd",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-565bcd17-1686-4fb6-8152-1a470e6437cd"
+            },
+            {
+              "name": "positions",
+              "item": [
+                {
+                  "name": "Get account positions",
+                  "id": "8086ba92-66c2-4474-8948-55816eec1550",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/positions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "positions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cbaf9f7f-5d84-4ac8-acf5-833d0dd27ce0",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2b480637-38ea-46b8-9c8b-1afa9e881b37",
+                      "name": "Current open positions.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/positions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "positions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-2b480637-38ea-46b8-9c8b-1afa9e881b37"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-8086ba92-66c2-4474-8948-55816eec1550"
+                }
+              ],
+              "id": "89f76e70-1dab-4564-bf2e-3d5ee2bd1435",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-89f76e70-1dab-4564-bf2e-3d5ee2bd1435"
+            },
+            {
+              "name": "history",
+              "item": [
+                {
+                  "name": "Get account history",
+                  "id": "66ae2d3b-595c-43bd-bf1d-8c939d20a492",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "history"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c7767a7c-68df-4ec0-9033-f7af847cf2e9",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d929fb42-faf1-47c6-a71f-8bf6472736cd",
+                      "name": "Historical account activity.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-d929fb42-faf1-47c6-a71f-8bf6472736cd"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-66ae2d3b-595c-43bd-bf1d-8c939d20a492"
+                }
+              ],
+              "id": "6ba04bbb-f86d-4d2b-b6ce-53e4897d275d",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-6ba04bbb-f86d-4d2b-b6ce-53e4897d275d"
+            },
+            {
+              "name": "gainloss",
+              "item": [
+                {
+                  "name": "Get cost basis / gain and loss",
+                  "id": "e85f1b60-9123-49e2-925b-9585ac21e9ab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/gainloss",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "gainloss"
+                      ],
+                      "variable": [
+                        {
+                          "id": "053e5af4-3b08-4d22-bcb4-7ab80aa2c36a",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "94c1bc44-c3d0-4372-bb43-ff5cea5fec4d",
+                      "name": "Cost basis and gain/loss data for closed positions.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/gainloss",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "gainloss"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-94c1bc44-c3d0-4372-bb43-ff5cea5fec4d"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-e85f1b60-9123-49e2-925b-9585ac21e9ab"
+                }
+              ],
+              "id": "0f10df94-fa29-4ba2-af62-03e5528683d3",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-0f10df94-fa29-4ba2-af62-03e5528683d3"
+            },
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{order_id}",
+                  "item": [
+                    {
+                      "name": "Get a specific order",
+                      "id": "e4dfa2cb-ba2b-4534-a303-4b566e013806",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "27ef9dd1-f156-4349-8d05-faab82b33e54",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) Tradier account identifier."
+                            },
+                            {
+                              "id": "f249423d-7f03-48ea-8dee-646f1450b26a",
+                              "key": "order_id",
+                              "value": "<string>",
+                              "description": "(Required) Order identifier."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "879ce7fd-c96a-472b-8062-a580cab11efa",
+                          "name": "Order details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "orders",
+                                ":order_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "order_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-08-03T11:20:32.000Z",
+                          "updatedAt": "2026-08-03T11:20:32.000Z",
+                          "uid": "35240-879ce7fd-c96a-472b-8062-a580cab11efa"
+                        }
+                      ],
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-e4dfa2cb-ba2b-4534-a303-4b566e013806"
+                    },
+                    {
+                      "name": "Modify an order",
+                      "id": "8b51f09a-62d3-448a-aa6a-6173da64cf58",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "611480de-532a-4dca-8584-88d107ad7a5d",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) Tradier account identifier."
+                            },
+                            {
+                              "id": "1fb6991b-b497-4e58-a519-838b7b27a838",
+                              "key": "order_id",
+                              "value": "<string>",
+                              "description": "(Required) Order identifier."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "9807f784-eeed-42ca-9b5e-3c3e0ee7af53",
+                          "name": "Modified order.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "orders",
+                                ":order_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "order_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-08-03T11:20:32.000Z",
+                          "updatedAt": "2026-08-03T11:20:32.000Z",
+                          "uid": "35240-9807f784-eeed-42ca-9b5e-3c3e0ee7af53"
+                        }
+                      ],
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-8b51f09a-62d3-448a-aa6a-6173da64cf58"
+                    },
+                    {
+                      "name": "Cancel an order",
+                      "id": "08020d94-4b6e-4c02-bf59-4d35a1294d5a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fdd699fe-a05f-4098-8e1c-425d5d879711",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) Tradier account identifier."
+                            },
+                            {
+                              "id": "3c8fee89-8474-4090-ab35-3bc4ea973c11",
+                              "key": "order_id",
+                              "value": "<string>",
+                              "description": "(Required) Order identifier."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "89fd00f4-b92c-48f7-abfe-48cfe73d1d66",
+                          "name": "Cancellation acknowledgement.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:account_id/orders/:order_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":account_id",
+                                "orders",
+                                ":order_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                },
+                                {
+                                  "key": "order_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-08-03T11:20:32.000Z",
+                          "updatedAt": "2026-08-03T11:20:32.000Z",
+                          "uid": "35240-89fd00f4-b92c-48f7-abfe-48cfe73d1d66"
+                        }
+                      ],
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-08020d94-4b6e-4c02-bf59-4d35a1294d5a"
+                    }
+                  ],
+                  "id": "ce4658db-147d-4673-8161-f56fdbf336a1",
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-ce4658db-147d-4673-8161-f56fdbf336a1"
+                },
+                {
+                  "name": "List orders",
+                  "id": "3f8f4d30-404c-4bc9-89e6-a3c7b4fc914a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "orders"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ec068b5-4ea3-45f8-902e-da1e75c20b91",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8f778957-a6b4-4ae6-abdf-e0f574b36eea",
+                      "name": "List of current orders.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-8f778957-a6b4-4ae6-abdf-e0f574b36eea"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-3f8f4d30-404c-4bc9-89e6-a3c7b4fc914a"
+                },
+                {
+                  "name": "Place order",
+                  "id": "518957ef-198a-400f-aecb-46b7c3d89657",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) equity, option, multileg, combo",
+                          "key": "class",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) buy, sell, buy_to_cover, sell_short",
+                          "key": "side",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "quantity",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) market, limit, stop, stop_limit",
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) day, gtc, pre, post",
+                          "key": "duration",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "price",
+                          "value": "<number>"
+                        },
+                        {
+                          "key": "stop",
+                          "value": "<number>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "orders"
+                      ],
+                      "variable": [
+                        {
+                          "id": "03e70492-0c22-40bd-85ec-41b26276122c",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) Tradier account identifier."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a179489f-5312-4f85-bc54-3e1d66d719a9",
+                      "name": "Order acknowledgement.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) equity, option, multileg, combo",
+                              "key": "class",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "symbol",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) buy, sell, buy_to_cover, sell_short",
+                              "key": "side",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "quantity",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "(Required) market, limit, stop, stop_limit",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) day, gtc, pre, post",
+                              "key": "duration",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "price",
+                              "value": "<number>"
+                            },
+                            {
+                              "key": "stop",
+                              "value": "<number>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "orders"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-a179489f-5312-4f85-bc54-3e1d66d719a9"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-518957ef-198a-400f-aecb-46b7c3d89657"
+                }
+              ],
+              "id": "a6de5d40-ee56-44db-abdb-93785fc95169",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-a6de5d40-ee56-44db-abdb-93785fc95169"
+            }
+          ],
+          "id": "4c7b27da-ef2c-4764-a4dc-5d2c86d523aa",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-4c7b27da-ef2c-4764-a4dc-5d2c86d523aa"
+        },
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "session",
+              "item": [
+                {
+                  "name": "Create account streaming session",
+                  "id": "63f129c3-b31c-4990-971d-05105a7e995b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/events/session",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "events",
+                        "session"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "756832da-739a-4266-899a-5ce4c1b11d90",
+                      "name": "Session token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/events/session",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            "events",
+                            "session"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-756832da-739a-4266-899a-5ce4c1b11d90"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-63f129c3-b31c-4990-971d-05105a7e995b"
+                }
+              ],
+              "id": "5a1c081a-8038-4539-90c0-fa2b186edc08",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-5a1c081a-8038-4539-90c0-fa2b186edc08"
+            }
+          ],
+          "id": "f1d9f943-294d-4f52-ace0-91722dcd3124",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-f1d9f943-294d-4f52-ace0-91722dcd3124"
+        }
+      ],
+      "id": "e29b5637-f003-4c00-a9e8-e4a7884d1728",
+      "createdAt": "2026-08-03T11:20:32.000Z",
+      "updatedAt": "2026-08-03T11:20:32.000Z",
+      "uid": "35240-e29b5637-f003-4c00-a9e8-e4a7884d1728"
+    },
+    {
+      "name": "markets",
+      "item": [
+        {
+          "name": "quotes",
+          "item": [
+            {
+              "name": "Get quotes for symbols",
+              "id": "f4e3259e-1c43-4b1b-860a-43c13bae0fc4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/quotes?symbols=<string>&greeks=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "quotes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Comma-separated list of symbols.",
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "greeks",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2fec870d-e71f-4c21-a8cb-665f191a80c6",
+                  "name": "Quote data.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/quotes?symbols=<string>&greeks=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "quotes"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of symbols.",
+                          "key": "symbols",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "greeks",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-2fec870d-e71f-4c21-a8cb-665f191a80c6"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-f4e3259e-1c43-4b1b-860a-43c13bae0fc4"
+            },
+            {
+              "name": "Get quotes (large symbol list)",
+              "id": "5a13b20b-7dbe-42ef-9de4-8838bda0a354",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "quotes"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "557c9c82-fe20-4d26-8a66-2b338a629967",
+                  "name": "Quote data.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/quotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "quotes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-557c9c82-fe20-4d26-8a66-2b338a629967"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-5a13b20b-7dbe-42ef-9de4-8838bda0a354"
+            }
+          ],
+          "id": "e21c107e-41ad-48dd-965b-a78dd65c5beb",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-e21c107e-41ad-48dd-965b-a78dd65c5beb"
+        },
+        {
+          "name": "history",
+          "item": [
+            {
+              "name": "Get historical pricing",
+              "id": "1069cb22-f7a6-4be5-ad1c-7bc21d32c4a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/history?symbol=<string>&interval=weekly&start=<date>&end=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "history"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "weekly"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ee8afe25-5745-42b2-8b67-c8bfbcb254bd",
+                  "name": "Historical pricing.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/history?symbol=<string>&interval=weekly&start=<date>&end=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "interval",
+                          "value": "weekly"
+                        },
+                        {
+                          "key": "start",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "end",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-ee8afe25-5745-42b2-8b67-c8bfbcb254bd"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-1069cb22-f7a6-4be5-ad1c-7bc21d32c4a0"
+            }
+          ],
+          "id": "0f4e6677-61c9-48e5-b917-88dafc189192",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-0f4e6677-61c9-48e5-b917-88dafc189192"
+        },
+        {
+          "name": "timesales",
+          "item": [
+            {
+              "name": "Get time and sales",
+              "id": "b1ba2871-f095-4af3-aaf2-6d1600314a46",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/timesales?symbol=<string>&interval=15min&start=<string>&end=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "timesales"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "15min"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2d769407-12d1-4444-95c1-8ddd25fbcf28",
+                  "name": "Time and sales data.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/timesales?symbol=<string>&interval=15min&start=<string>&end=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "timesales"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "interval",
+                          "value": "15min"
+                        },
+                        {
+                          "key": "start",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "end",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-2d769407-12d1-4444-95c1-8ddd25fbcf28"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-b1ba2871-f095-4af3-aaf2-6d1600314a46"
+            }
+          ],
+          "id": "00497a04-9193-4350-b03f-cf706af362da",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-00497a04-9193-4350-b03f-cf706af362da"
+        },
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Search securities",
+              "id": "824d950e-6224-469a-beea-1d13c19377a3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/search?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "670a2695-6cdf-4f01-9f47-3823d8fc7fda",
+                  "name": "Matching securities.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/search?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-670a2695-6cdf-4f01-9f47-3823d8fc7fda"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-824d950e-6224-469a-beea-1d13c19377a3"
+            }
+          ],
+          "id": "4cbf9070-c49c-407b-a880-4e7a4ed00005",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-4cbf9070-c49c-407b-a880-4e7a4ed00005"
+        },
+        {
+          "name": "lookup",
+          "item": [
+            {
+              "name": "Lookup symbols",
+              "id": "c5347369-a6ae-4466-a56a-84244329c50b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/lookup?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "lookup"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c5c72360-beaa-4592-ae81-b229df1dc34d",
+                  "name": "Matching symbols.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/lookup?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "lookup"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-c5c72360-beaa-4592-ae81-b229df1dc34d"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-c5347369-a6ae-4466-a56a-84244329c50b"
+            }
+          ],
+          "id": "16833123-12d3-4da8-87ce-7bc81b6e321e",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-16833123-12d3-4da8-87ce-7bc81b6e321e"
+        },
+        {
+          "name": "clock",
+          "item": [
+            {
+              "name": "Get market clock",
+              "id": "dbbc064e-1512-4ec0-bb28-64aca5a39629",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/clock",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "clock"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4828de46-4356-4925-a74b-52b0180bea4a",
+                  "name": "Current market status.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/clock",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "clock"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-4828de46-4356-4925-a74b-52b0180bea4a"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-dbbc064e-1512-4ec0-bb28-64aca5a39629"
+            }
+          ],
+          "id": "4d2be645-285d-405b-884c-407c048c282d",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-4d2be645-285d-405b-884c-407c048c282d"
+        },
+        {
+          "name": "calendar",
+          "item": [
+            {
+              "name": "Get market calendar",
+              "id": "041204cb-a3cb-4fa9-8066-24474436182d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/markets/calendar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "markets",
+                    "calendar"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "13800f69-40d4-44db-95fb-d43d1e883e62",
+                  "name": "Market calendar.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/calendar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "calendar"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-13800f69-40d4-44db-95fb-d43d1e883e62"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-041204cb-a3cb-4fa9-8066-24474436182d"
+            }
+          ],
+          "id": "58f61770-f48d-49d0-9bce-50c3ad57032d",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-58f61770-f48d-49d0-9bce-50c3ad57032d"
+        },
+        {
+          "name": "options",
+          "item": [
+            {
+              "name": "chains",
+              "item": [
+                {
+                  "name": "Get option chains",
+                  "id": "94215d9f-95b8-4ede-8a9e-6b8254b81ee1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/options/chains?symbol=<string>&expiration=<date>&greeks=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "options",
+                        "chains"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "expiration",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "greeks",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d9ed74e4-0e13-4a05-87dd-3d688d4f3b23",
+                      "name": "Option chain.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/options/chains?symbol=<string>&expiration=<date>&greeks=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            "options",
+                            "chains"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "symbol",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "expiration",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "greeks",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-d9ed74e4-0e13-4a05-87dd-3d688d4f3b23"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-94215d9f-95b8-4ede-8a9e-6b8254b81ee1"
+                }
+              ],
+              "id": "2edd4407-66c5-49d1-a1a4-954a14b1b800",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-2edd4407-66c5-49d1-a1a4-954a14b1b800"
+            },
+            {
+              "name": "expirations",
+              "item": [
+                {
+                  "name": "Get option expirations",
+                  "id": "80fb0659-89d4-432a-899c-257505789f53",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/options/expirations?symbol=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "options",
+                        "expirations"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1daee052-4030-4297-862d-1143140b1769",
+                      "name": "Available expirations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/options/expirations?symbol=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            "options",
+                            "expirations"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "symbol",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-1daee052-4030-4297-862d-1143140b1769"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-80fb0659-89d4-432a-899c-257505789f53"
+                }
+              ],
+              "id": "ddfdd769-0777-41bf-880c-741cfed27212",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-ddfdd769-0777-41bf-880c-741cfed27212"
+            },
+            {
+              "name": "strikes",
+              "item": [
+                {
+                  "name": "Get option strikes",
+                  "id": "f7d31615-2ced-4277-83e5-549a71b74032",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/options/strikes?symbol=<string>&expiration=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "options",
+                        "strikes"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "symbol",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "expiration",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ab30dd53-5b75-4e3e-b85b-9c40e541e09b",
+                      "name": "Available strikes.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/options/strikes?symbol=<string>&expiration=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            "options",
+                            "strikes"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "symbol",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "expiration",
+                              "value": "<date>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-ab30dd53-5b75-4e3e-b85b-9c40e541e09b"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-f7d31615-2ced-4277-83e5-549a71b74032"
+                }
+              ],
+              "id": "40dadf69-3ec2-425a-9d0d-02041b157b28",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-40dadf69-3ec2-425a-9d0d-02041b157b28"
+            }
+          ],
+          "id": "bf0778eb-8543-41b1-ac20-ad1c9f2b5747",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-bf0778eb-8543-41b1-ac20-ad1c9f2b5747"
+        },
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "session",
+              "item": [
+                {
+                  "name": "Create market streaming session",
+                  "id": "a4fd7a81-1b95-403f-9075-f31f76dabe61",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/events/session",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        "events",
+                        "session"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d160863e-638b-46a0-bc5d-d1794f515917",
+                      "name": "Session token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/events/session",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            "events",
+                            "session"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-08-03T11:20:32.000Z",
+                      "updatedAt": "2026-08-03T11:20:32.000Z",
+                      "uid": "35240-d160863e-638b-46a0-bc5d-d1794f515917"
+                    }
+                  ],
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-a4fd7a81-1b95-403f-9075-f31f76dabe61"
+                }
+              ],
+              "id": "f2f467f8-dca2-4abe-8cb5-d48f33e4bdff",
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-f2f467f8-dca2-4abe-8cb5-d48f33e4bdff"
+            }
+          ],
+          "id": "38502551-0a31-4bae-b7ee-31d134709492",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-38502551-0a31-4bae-b7ee-31d134709492"
+        }
+      ],
+      "id": "86ee35a4-388a-4e52-8e12-6da5ec833a0b",
+      "createdAt": "2026-08-03T11:20:32.000Z",
+      "updatedAt": "2026-08-03T11:20:32.000Z",
+      "uid": "35240-86ee35a4-388a-4e52-8e12-6da5ec833a0b"
+    },
+    {
+      "name": "watchlists",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a watchlist",
+              "id": "0823ccbd-9dc3-421b-921e-3eb83ce2dbee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7b81c211-e6d7-4ef6-a480-bb62cf7c5309",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "20a75c0a-6c5f-49b1-92f2-26a1960bcf0c",
+                  "name": "Watchlist detail.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-20a75c0a-6c5f-49b1-92f2-26a1960bcf0c"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-0823ccbd-9dc3-421b-921e-3eb83ce2dbee"
+            },
+            {
+              "name": "Update a watchlist",
+              "id": "54d802c6-28bc-4aa0-9868-75f345692616",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "eb046575-e3b3-4370-ac9f-12d503a1c861",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f99cce13-e1bd-480b-b795-6b3eb9de96b9",
+                  "name": "Updated watchlist.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-f99cce13-e1bd-480b-b795-6b3eb9de96b9"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-54d802c6-28bc-4aa0-9868-75f345692616"
+            },
+            {
+              "name": "Delete a watchlist",
+              "id": "43845b76-a21b-45f7-90e0-3e69e9d2e284",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "63ead898-173f-42a2-bf40-8a6d3ab9e1f6",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "784cfaf6-405e-4ae9-b8e9-e019cc271c4b",
+                  "name": "Deletion acknowledgement.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-08-03T11:20:32.000Z",
+                  "updatedAt": "2026-08-03T11:20:32.000Z",
+                  "uid": "35240-784cfaf6-405e-4ae9-b8e9-e019cc271c4b"
+                }
+              ],
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-43845b76-a21b-45f7-90e0-3e69e9d2e284"
+            }
+          ],
+          "id": "d55fddc8-2787-4fa6-956f-fc181c6ef150",
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-d55fddc8-2787-4fa6-956f-fc181c6ef150"
+        },
+        {
+          "name": "List watchlists",
+          "id": "3c1085b5-9cfa-4e1a-9e7d-e891b24cc9c1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/watchlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "watchlists"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d8bf2e1-b389-4b6d-98ab-cad90801c099",
+              "name": "All watchlists.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-8d8bf2e1-b389-4b6d-98ab-cad90801c099"
+            }
+          ],
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-3c1085b5-9cfa-4e1a-9e7d-e891b24cc9c1"
+        },
+        {
+          "name": "Create watchlist",
+          "id": "aa0f503f-bd1e-4de8-bc30-6376d4f90042",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/watchlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "watchlists"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c7f11371-ea16-423b-9a35-de2059df2a7c",
+              "name": "Created watchlist.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-08-03T11:20:32.000Z",
+              "updatedAt": "2026-08-03T11:20:32.000Z",
+              "uid": "35240-c7f11371-ea16-423b-9a35-de2059df2a7c"
+            }
+          ],
+          "createdAt": "2026-08-03T11:20:32.000Z",
+          "updatedAt": "2026-08-03T11:20:32.000Z",
+          "uid": "35240-aa0f503f-bd1e-4de8-bc30-6376d4f90042"
+        }
+      ],
+      "id": "adb6a435-0e7c-4338-a700-8d12ab3db133",
+      "createdAt": "2026-08-03T11:20:32.000Z",
+      "updatedAt": "2026-08-03T11:20:32.000Z",
+      "uid": "35240-adb6a435-0e7c-4338-a700-8d12ab3db133"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.tradier.com/v1"
+    }
+  ]
+}
