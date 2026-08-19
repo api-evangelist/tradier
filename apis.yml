@@ -24,7 +24,7 @@ tags:
   - Streaming
 created: '2026-05-08'
 modified: '2026-07-22'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   Tradier is a brokerage platform offering REST and WebSocket APIs for trading
   US equities, options, and futures, plus market data and account-opening services.
