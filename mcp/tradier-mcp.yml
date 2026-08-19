@@ -6,53 +6,123 @@ announced: 2026-07-16 (blog "Meet Your AI Trading Agent, Connect Tradier to Your
 server:
   name: tradier
   version: 0.0.1
-  transport: http            # MCP Streamable HTTP
+  transport: http
   url: https://mcp.tradier.com/mcp
   marketing: https://tradier.com/individuals/mcp-server
   knowledge_base: https://support.tradier.com/kb/guide/en/tradiers-mcp-server-eoA0tv3GlS/Steps/4946334
 auth:
-  methods: [apikey, oauth2]
+  methods:
+  - apikey
+  - oauth2
   apikey:
     header: API_KEY
-    query: api_key            # ChatGPT / Claude web connectors use ?api_key=...&paper_trading=...
-    paper_trading_flag: PAPER_TRADING   # true = paper-trading token/account, false = live
+    query: api_key
+    paper_trading_flag: PAPER_TRADING
     token_source: https://web.tradier.com/user/api
   oauth2:
     issuer: https://p-be-auth.tradier.com
     authorization_endpoint: https://p-be-auth.tradier.com/oauth2/authorize
     token_endpoint: https://p-be-auth.tradier.com/oauth2/token
-    scopes_supported: [openid, mcp, claudeai]
+    scopes_supported:
+    - openid
+    - mcp
+    - claudeai
     pkce: S256
     discovery: well-known/tradier-mcp-oauth-authorization-server.json
-integrations: [ChatGPT web/desktop, Claude web/desktop, Claude Code, Gemini CLI, Cursor]
+integrations:
+- ChatGPT web/desktop
+- Claude web/desktop
+- Claude Code
+- Gemini CLI
+- Cursor
 tool_count: 21
-tools_list: mcp/tradier-mcp-tools.json   # live tools/list capture with full inputSchemas (anonymous session, 2026-07-22)
-notes: >-
-  The MCP initialize + tools/list handshake succeeds anonymously (schemas are
-  public); tool CALLS require a Tradier API token via the API_KEY header or
-  api_key query parameter, with PAPER_TRADING switching between live and paper
-  accounts. The docs additionally list a search_tradier_docs documentation tool;
-  the live server exposed 21 tools including get_company_profile (not in the
-  docs table) at capture time.
+tools_list: mcp/tradier-mcp-tools.json
+notes: The MCP initialize + tools/list handshake succeeds anonymously (schemas are public); tool CALLS
+  require a Tradier API token via the API_KEY header or api_key query parameter, with PAPER_TRADING switching
+  between live and paper accounts. The docs additionally list a search_tradier_docs documentation tool;
+  the live server exposed 21 tools including get_company_profile (not in the docs table) at capture time.
 tools:
-  - {name: get_user_profile, category: account, description: Retrieves user profile information and account settings.}
-  - {name: get_account_balances, category: account, description: Retrieves balances for a specific account.}
-  - {name: get_account_historical_balances, category: account, description: Retrieves historical balances for a specific account.}
-  - {name: get_positions, category: account, description: Retrieves current positions with symbol, quantity, cost basis, and value.}
-  - {name: get_account_history, category: account, description: Retrieves historical account activity (trades, dividends, options, transfers).}
-  - {name: get_gainloss, category: account, description: Retrieves realized and unrealized gain/loss reports.}
-  - {name: get_orders, category: trading, description: Retrieves all orders for an account with full order detail.}
-  - {name: place_equity_order, category: trading, description: Places an equity buy/sell order (market, limit, stop, stop_limit).}
-  - {name: place_option_order, category: trading, description: Places a single-leg option order.}
-  - {name: place_multileg_option_order, category: trading, description: Places a multileg option order with 2-4 legs (spreads, straddles).}
-  - {name: place_oco_order, category: trading, description: Places a One-Cancels-Other order pair.}
-  - {name: place_oto_order, category: trading, description: Places a One-Triggers-Other order pair.}
-  - {name: place_otoco_order, category: trading, description: Places a One-Triggers-OCO bracket order.}
-  - {name: cancel_order, category: trading, description: Cancels an existing order by account number and order ID.}
-  - {name: get_market_quotes, category: market-data, description: Retrieves quotes with last price, change, volume, bid/ask.}
-  - {name: get_historical_data, category: market-data, description: Retrieves daily/weekly/monthly historical price data.}
-  - {name: get_options_chain, category: market-data, description: Retrieves an options chain for a symbol/expiration, optionally with Greeks.}
-  - {name: get_market_calendar, category: market-data, description: Retrieves the market calendar of trading days and holidays.}
-  - {name: get_company_profile, category: market-data, description: Retrieves company profile/fundamentals for symbols.}
-  - {name: get_watchlists, category: watchlists, description: Retrieves all watchlists and their symbols.}
-  - {name: add_to_watchlist, category: watchlists, description: Adds one or more symbols to a watchlist.}
+- name: get_user_profile
+  category: account
+  description: Retrieves user profile information and account settings.
+- name: get_account_balances
+  category: account
+  description: Retrieves balances for a specific account.
+- name: get_account_historical_balances
+  category: account
+  description: Retrieves historical balances for a specific account.
+- name: get_positions
+  category: account
+  description: Retrieves current positions with symbol
+  quantity: null
+  cost basis: null
+  and value.: null
+- name: get_account_history
+  category: account
+  description: Retrieves historical account activity (trades
+  dividends: null
+  options: null
+  transfers).: null
+- name: get_gainloss
+  category: account
+  description: Retrieves realized and unrealized gain/loss reports.
+- name: get_orders
+  category: trading
+  description: Retrieves all orders for an account with full order detail.
+- name: place_equity_order
+  category: trading
+  description: Places an equity buy/sell order (market
+  limit: null
+  stop: null
+  stop_limit).: null
+- name: place_option_order
+  category: trading
+  description: Places a single-leg option order.
+- name: place_multileg_option_order
+  category: trading
+  description: Places a multileg option order with 2-4 legs (spreads
+  straddles).: null
+- name: place_oco_order
+  category: trading
+  description: Places a One-Cancels-Other order pair.
+- name: place_oto_order
+  category: trading
+  description: Places a One-Triggers-Other order pair.
+- name: place_otoco_order
+  category: trading
+  description: Places a One-Triggers-OCO bracket order.
+- name: cancel_order
+  category: trading
+  description: Cancels an existing order by account number and order ID.
+- name: get_market_quotes
+  category: market-data
+  description: Retrieves quotes with last price
+  change: null
+  volume: null
+  bid/ask.: null
+- name: get_historical_data
+  category: market-data
+  description: Retrieves daily/weekly/monthly historical price data.
+- name: get_options_chain
+  category: market-data
+  description: Retrieves an options chain for a symbol/expiration
+  optionally with Greeks.: null
+- name: get_market_calendar
+  category: market-data
+  description: Retrieves the market calendar of trading days and holidays.
+- name: get_company_profile
+  category: market-data
+  description: Retrieves company profile/fundamentals for symbols.
+- name: get_watchlists
+  category: watchlists
+  description: Retrieves all watchlists and their symbols.
+- name: add_to_watchlist
+  category: watchlists
+  description: Adds one or more symbols to a watchlist.
+deployment:
+  mode: remote
+  endpoint: https://mcp.tradier.com/mcp
+  verified: probed
+  probe: live
+  checked: '2026-08-12'
+  source: catalog MCP census

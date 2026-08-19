@@ -1,0 +1,635 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tradier Brokerage API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/user/profile"
+          },
+          "docs": "Get user profile"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/balances",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ]
+          },
+          "docs": "Get account balances"
+        },
+        {
+          "info": {
+            "name": "Get account positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/positions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ]
+          },
+          "docs": "Get account positions"
+        },
+        {
+          "info": {
+            "name": "Get account history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/history",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ]
+          },
+          "docs": "Get account history"
+        },
+        {
+          "info": {
+            "name": "Get cost basis / gain and loss",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/gainloss",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ]
+          },
+          "docs": "Get cost basis / gain and loss"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Trading",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/orders",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ]
+          },
+          "docs": "List orders"
+        },
+        {
+          "info": {
+            "name": "Place order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/orders",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "class",
+                  "value": ""
+                },
+                {
+                  "name": "symbol",
+                  "value": ""
+                },
+                {
+                  "name": "side",
+                  "value": ""
+                },
+                {
+                  "name": "quantity",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "value": ""
+                },
+                {
+                  "name": "price",
+                  "value": ""
+                },
+                {
+                  "name": "stop",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Place order"
+        },
+        {
+          "info": {
+            "name": "Get a specific order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/orders/:order_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order identifier."
+              }
+            ]
+          },
+          "docs": "Get a specific order"
+        },
+        {
+          "info": {
+            "name": "Modify an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/orders/:order_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order identifier."
+              }
+            ]
+          },
+          "docs": "Modify an order"
+        },
+        {
+          "info": {
+            "name": "Cancel an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tradier.com/v1/accounts/:account_id/orders/:order_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Tradier account identifier."
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order identifier."
+              }
+            ]
+          },
+          "docs": "Cancel an order"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get quotes for symbols",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/quotes",
+            "params": [
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of symbols."
+              },
+              {
+                "name": "greeks",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get quotes for symbols"
+        },
+        {
+          "info": {
+            "name": "Get quotes (large symbol list)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tradier.com/v1/markets/quotes"
+          },
+          "docs": "Get quotes (large symbol list)"
+        },
+        {
+          "info": {
+            "name": "Get historical pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/history",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get historical pricing"
+        },
+        {
+          "info": {
+            "name": "Get time and sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/timesales",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get time and sales"
+        },
+        {
+          "info": {
+            "name": "Search securities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search securities"
+        },
+        {
+          "info": {
+            "name": "Lookup symbols",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/lookup",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lookup symbols"
+        },
+        {
+          "info": {
+            "name": "Get market clock",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/clock"
+          },
+          "docs": "Get market clock"
+        },
+        {
+          "info": {
+            "name": "Get market calendar",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/calendar"
+          },
+          "docs": "Get market calendar"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get option chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/options/chains",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expiration",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "greeks",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get option chains"
+        },
+        {
+          "info": {
+            "name": "Get option expirations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/options/expirations",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get option expirations"
+        },
+        {
+          "info": {
+            "name": "Get option strikes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/markets/options/strikes",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expiration",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get option strikes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Watchlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List watchlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/watchlists"
+          },
+          "docs": "List watchlists"
+        },
+        {
+          "info": {
+            "name": "Create watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tradier.com/v1/watchlists"
+          },
+          "docs": "Create watchlist"
+        },
+        {
+          "info": {
+            "name": "Get a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tradier.com/v1/watchlists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a watchlist"
+        },
+        {
+          "info": {
+            "name": "Update a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.tradier.com/v1/watchlists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a watchlist"
+        },
+        {
+          "info": {
+            "name": "Delete a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.tradier.com/v1/watchlists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a watchlist"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Streaming",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create market streaming session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tradier.com/v1/markets/events/session"
+          },
+          "docs": "Create market streaming session"
+        },
+        {
+          "info": {
+            "name": "Create account streaming session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tradier.com/v1/accounts/events/session"
+          },
+          "docs": "Create account streaming session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
