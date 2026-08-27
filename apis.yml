@@ -143,14 +143,76 @@ apis:
   - Trade and manage a brokerage account from an AI assistant
   - Build agentic trading research workflows
   - Query market data conversationally
-- aid: tradier:tradier-openapi
-  name: Tradier Brokerage API
-  description: Tradier Brokerage API from Tradier — 21 path(s) described in OpenAPI.
+- aid: tradier:tradier-accounts-api
+  name: Tradier Accounts API
+  description: The Accounts API from Tradier — 4 operation(s) for accounts.
   humanURL: https://docs.tradier.com/
   baseURL: https://api.tradier.com/v1
+  tags:
+  - Accounts
   properties:
   - type: OpenAPI
-    url: openapi/tradier-openapi.yml
+    url: openapi/tradier-accounts-api-openapi.yml
+- aid: tradier:tradier-market-data-api
+  name: Tradier Market Data API
+  description: The Market Data API from Tradier — 7 operation(s) for market data.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-market-data-api-openapi.yml
+- aid: tradier:tradier-options-api
+  name: Tradier Options API
+  description: The Options API from Tradier — 3 operation(s) for options.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - Options
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-options-api-openapi.yml
+- aid: tradier:tradier-streaming-api
+  name: Tradier Streaming API
+  description: The Streaming API from Tradier — 2 operation(s) for streaming.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - Streaming
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-streaming-api-openapi.yml
+- aid: tradier:tradier-trading-api
+  name: Tradier Trading API
+  description: The Trading API from Tradier — 2 operation(s) for trading.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - Trading
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-trading-api-openapi.yml
+- aid: tradier:tradier-user-api
+  name: Tradier User API
+  description: The User API from Tradier — 1 operation(s) for user.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-user-api-openapi.yml
+- aid: tradier:tradier-watchlists-api
+  name: Tradier Watchlists API
+  description: The Watchlists API from Tradier — 2 operation(s) for watchlists.
+  humanURL: https://docs.tradier.com/
+  baseURL: https://api.tradier.com/v1
+  tags:
+  - Watchlists
+  properties:
+  - type: OpenAPI
+    url: openapi/tradier-watchlists-api-openapi.yml
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/tradier/overview
