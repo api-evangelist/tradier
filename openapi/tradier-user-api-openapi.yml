@@ -1,0 +1,45 @@
+openapi: 3.2.0
+info:
+  title: Tradier Brokerage User API
+  version: '1.0'
+  description: 'REST API for the Tradier brokerage platform covering trading,
+
+    account management, market data, watchlists, and streaming session
+
+    creation for US equities and options.
+
+
+    Source: https://docs.tradier.com/ (endpoints aggregated from the
+
+    public llms.txt index and reference documentation).
+
+    '
+  contact:
+    name: Tradier
+    url: https://docs.tradier.com/
+servers:
+- url: https://api.tradier.com/v1
+  description: Production brokerage API
+- url: https://sandbox.tradier.com/v1
+  description: Sandbox (delayed data) environment
+security:
+- bearerAuth: []
+tags:
+- name: User
+paths:
+  /user/profile:
+    get:
+      tags:
+      - User
+      summary: Get user profile
+      operationId: getUserProfile
+      responses:
+        '200':
+          description: User profile information.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: 'Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.'

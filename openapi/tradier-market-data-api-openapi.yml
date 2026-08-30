@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  title: Tradier Brokerage Market Data API
+  version: '1.0'
+  description: 'REST API for the Tradier brokerage platform covering trading,
+
+    account management, market data, watchlists, and streaming session
+
+    creation for US equities and options.
+
+
+    Source: https://docs.tradier.com/ (endpoints aggregated from the
+
+    public llms.txt index and reference documentation).
+
+    '
+  contact:
+    name: Tradier
+    url: https://docs.tradier.com/
+servers:
+- url: https://api.tradier.com/v1
+  description: Production brokerage API
+- url: https://sandbox.tradier.com/v1
+  description: Sandbox (delayed data) environment
+security:
+- bearerAuth: []
+tags:
+- name: Market Data
+paths:
+  /markets/quotes:
+    get:
+      tags:
+      - Market Data
+      summary: Get quotes for symbols
+      operationId: getQuotes
+      parameters:
+      - in: query
+        name: symbols
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of symbols.
+      - in: query
+        name: greeks
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Quote data.
+    post:
+      tags:
+      - Market Data
+      summary: Get quotes (large symbol list)
+      operationId: postQuotes
+      responses:
+        '200':
+          description: Quote data.
+  /markets/history:
+    get:
+      tags:
+      - Market Data
+      summary: Get historical pricing
+      operationId: getHistory
+      parameters:
+      - in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: interval
+        schema:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - monthly
+      - in: query
+        name: start
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: end
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Historical pricing.
+  /markets/timesales:
+    get:
+      tags:
+      - Market Data
+      summary: Get time and sales
+      operationId: getTimeSales
+      parameters:
+      - in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: interval
+        schema:
+          type: string
+          enum:
+          - tick
+          - 1min
+          - 5min
+          - 15min
+      - in: query
+        name: start
+        schema:
+          type: string
+      - in: query
+        name: end
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Time and sales data.
+  /markets/search:
+    get:
+      tags:
+      - Market Data
+      summary: Search securities
+      operationId: searchSecurities
+      parameters:
+      - in: query
+        name: q
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching securities.
+  /markets/lookup:
+    get:
+      tags:
+      - Market Data
+      summary: Lookup symbols
+      operationId: lookupSymbols
+      parameters:
+      - in: query
+        name: q
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching symbols.
+  /markets/clock:
+    get:
+      tags:
+      - Market Data
+      summary: Get market clock
+      operationId: getClock
+      responses:
+        '200':
+          description: Current market status.
+  /markets/calendar:
+    get:
+      tags:
+      - Market Data
+      summary: Get market calendar
+      operationId: getCalendar
+      responses:
+        '200':
+          description: Market calendar.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: 'Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.'

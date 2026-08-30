@@ -1,0 +1,88 @@
+openapi: 3.2.0
+info:
+  title: Tradier Brokerage Accounts API
+  version: '1.0'
+  description: 'REST API for the Tradier brokerage platform covering trading,
+
+    account management, market data, watchlists, and streaming session
+
+    creation for US equities and options.
+
+
+    Source: https://docs.tradier.com/ (endpoints aggregated from the
+
+    public llms.txt index and reference documentation).
+
+    '
+  contact:
+    name: Tradier
+    url: https://docs.tradier.com/
+servers:
+- url: https://api.tradier.com/v1
+  description: Production brokerage API
+- url: https://sandbox.tradier.com/v1
+  description: Sandbox (delayed data) environment
+security:
+- bearerAuth: []
+tags:
+- name: Accounts
+paths:
+  /accounts/{account_id}/balances:
+    get:
+      tags:
+      - Accounts
+      summary: Get account balances
+      operationId: getAccountBalances
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Account balance and margin information.
+  /accounts/{account_id}/positions:
+    get:
+      tags:
+      - Accounts
+      summary: Get account positions
+      operationId: getAccountPositions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Current open positions.
+  /accounts/{account_id}/history:
+    get:
+      tags:
+      - Accounts
+      summary: Get account history
+      operationId: getAccountHistory
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Historical account activity.
+  /accounts/{account_id}/gainloss:
+    get:
+      tags:
+      - Accounts
+      summary: Get cost basis / gain and loss
+      operationId: getAccountGainLoss
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Cost basis and gain/loss data for closed positions.
+components:
+  parameters:
+    AccountId:
+      in: path
+      name: account_id
+      required: true
+      schema:
+        type: string
+      description: Tradier account identifier.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: 'Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.'

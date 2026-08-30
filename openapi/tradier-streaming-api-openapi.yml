@@ -1,0 +1,54 @@
+openapi: 3.2.0
+info:
+  title: Tradier Brokerage Streaming API
+  version: '1.0'
+  description: 'REST API for the Tradier brokerage platform covering trading,
+
+    account management, market data, watchlists, and streaming session
+
+    creation for US equities and options.
+
+
+    Source: https://docs.tradier.com/ (endpoints aggregated from the
+
+    public llms.txt index and reference documentation).
+
+    '
+  contact:
+    name: Tradier
+    url: https://docs.tradier.com/
+servers:
+- url: https://api.tradier.com/v1
+  description: Production brokerage API
+- url: https://sandbox.tradier.com/v1
+  description: Sandbox (delayed data) environment
+security:
+- bearerAuth: []
+tags:
+- name: Streaming
+paths:
+  /markets/events/session:
+    post:
+      tags:
+      - Streaming
+      summary: Create market streaming session
+      operationId: createMarketStreamingSession
+      responses:
+        '200':
+          description: Session token.
+  /accounts/events/session:
+    post:
+      tags:
+      - Streaming
+      summary: Create account streaming session
+      operationId: createAccountStreamingSession
+      responses:
+        '200':
+          description: Session token.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: 'Tradier OAuth 2.0 bearer token sent as `Authorization: Bearer <token>`.'
