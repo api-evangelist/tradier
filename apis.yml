@@ -161,6 +161,8 @@ apis:
   humanURL: https://docs.tradier.com/
   baseURL: https://api.tradier.com/v1
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -221,6 +223,8 @@ apis:
   humanURL: https://docs.tradier.com/
   baseURL: https://api.tradier.com/v1
   tags:
+  - Watchlist
+  tags_raw:
   - Watchlists
   properties:
   - type: OpenAPI
