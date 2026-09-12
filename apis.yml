@@ -230,6 +230,8 @@ apis:
   - type: OpenAPI
     url: openapi/tradier-watchlists-api-openapi.yml
 common:
+  - type: Website
+    url: https://www.tradier.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/tradier/overview
   - type: AgenticAccess
