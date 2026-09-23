@@ -1,0 +1,32 @@
+{
+  "provider": "tradier",
+  "sources": [
+    "_original/tradier-openapi.yml"
+  ],
+  "outputs": [
+    "tradier-accounts-api-openapi.yml",
+    "tradier-market-data-api-openapi.yml",
+    "tradier-options-api-openapi.yml",
+    "tradier-streaming-api-openapi.yml",
+    "tradier-trading-api-openapi.yml",
+    "tradier-user-api-openapi.yml",
+    "tradier-watchlists-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tradier-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tradier-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-market-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-options-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-streaming-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-trading-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tradier-watchlists-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

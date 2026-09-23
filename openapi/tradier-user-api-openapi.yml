@@ -11,9 +11,7 @@ info:
 
     Source: https://docs.tradier.com/ (endpoints aggregated from the
 
-    public llms.txt index and reference documentation).
-
-    '
+    public llms.txt index and reference documentation).'
   contact:
     name: Tradier
     url: https://docs.tradier.com/
