@@ -116,13 +116,6 @@ paths:
           description: Cancellation acknowledgement.
 components:
   parameters:
-    OrderId:
-      in: path
-      name: order_id
-      required: true
-      schema:
-        type: string
-      description: Order identifier.
     AccountId:
       in: path
       name: account_id
@@ -130,6 +123,13 @@ components:
       schema:
         type: string
       description: Tradier account identifier.
+    OrderId:
+      in: path
+      name: order_id
+      required: true
+      schema:
+        type: string
+      description: Order identifier.
   securitySchemes:
     bearerAuth:
       type: http
