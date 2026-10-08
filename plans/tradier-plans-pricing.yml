@@ -95,3 +95,38 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  - period
+  plans:
+  - name: Brokerage Sandbox
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Stocks and Options
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    - period
+    periods:
+    - month
+    - per-use
+  - name: TradierPRO
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - per-use
